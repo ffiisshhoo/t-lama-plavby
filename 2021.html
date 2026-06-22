@@ -31,6 +31,22 @@ header h1{
     padding:20px;
 }
 
+.back-button{
+    display:inline-block;
+    background:#0b4f6c;
+    color:white;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:10px;
+    margin:20px 0;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.back-button:hover{
+    background:#146b8c;
+}
+
 .text{
     background:white;
     padding:25px;
@@ -87,6 +103,10 @@ footer{
 
 <div class="container">
 
+<a href="index.html" class="back-button">
+    ← Zpět na přehled plaveb
+</a>
+
 <div class="text">
 <h2>Vltava 2021</h2>
 
@@ -118,10 +138,25 @@ a ještě větší porci zábavy, smíchu a nezapomenutelných momentů.
 <h3>🗓️ Trasa plavby</h3>
 
 <p>
-23. 7. 2021 – Vyšší Brod → U Fíka<br>
-24. 7. 2021 – U Fíka → Český Krumlov<br>
-25. 7. 2021 – Český Krumlov (U Trojice) → Zlatá Koruna
+<strong>22. 7. 2021 (čtvrtek)</strong><br>
+Příjezd do Zlaté Koruny a vybudování základního tábora.
 </p>
+
+<p>
+<strong>23. 7. 2021 (pátek)</strong><br>
+Vyšší Brod → U Fíka
+</p>
+
+<p>
+<strong>24. 7. 2021 (sobota)</strong><br>
+U Fíka → Český Krumlov
+</p>
+
+<p>
+<strong>25. 7. 2021 (neděle)</strong><br>
+Český Krumlov (U Trojice) → Zlatá Koruna
+</p>
+
 </div>
 
 <div class="mapa">
@@ -129,6 +164,12 @@ a ještě větší porci zábavy, smíchu a nezapomenutelných momentů.
 </div>
 
 <div class="galerie" id="galerie"></div>
+
+<div style="text-align:center;">
+    <a href="index.html" class="back-button">
+        ← Zpět na přehled plaveb
+    </a>
+</div>
 
 </div>
 
@@ -142,12 +183,14 @@ const galerie = document.getElementById('galerie');
 for(let i=1;i<=25;i++){
     const img = document.createElement('img');
     img.src = `fotky/2021/${i}.jpeg`;
+    img.loading = "lazy";
     galerie.appendChild(img);
 }
 
 const video = document.createElement('video');
 video.src = 'fotky/2021/26.mp4';
 video.controls = true;
+video.preload = "metadata";
 galerie.appendChild(video);
 </script>
 
