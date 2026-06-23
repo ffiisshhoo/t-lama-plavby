@@ -70,10 +70,50 @@ p {
     align-items: center;
 }
 
-.lightbox img {
+/* Kontejner, který drží fotku a vodoznak pohromadě */
+.lightbox-content {
+    position: relative;
     max-width: 90%;
     max-height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
     border-radius: 15px;
+    display: block;
+}
+
+/* Styl pro vodoznak v pravém dolním rohu fotky */
+.watermark {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.6; /* Průhlednost vodoznaku */
+    pointer-events: none; /* Aby vodoznak nepřekážel klikání */
+    user-select: none;
+}
+
+.watermark img {
+    width: 60px; /* Velikost loga lamy */
+    height: auto;
+    margin-bottom: 5px;
+    box-shadow: none; /* Odstranění stínu pro logo */
+    border-radius: 0;
+}
+
+.watermark span {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    font-family: Arial, sans-serif;
 }
 
 .close,
@@ -140,6 +180,14 @@ p {
     .next {
         font-size: 40px;
     }
+
+    .watermark img {
+        width: 45px; /* Menší logo na mobilech */
+    }
+    
+    .watermark span {
+        font-size: 11px;
+    }
 }
 </style>
 </head>
@@ -187,10 +235,20 @@ a začalo dobrodružství, které pokračuje dodnes.
 
 </div>
 
+<!-- Upravený Lightbox s obalem pro fotku a vodoznak -->
 <div id="lightbox" class="lightbox">
     <span class="close" onclick="closePhoto()">✕</span>
     <span class="prev" onclick="changePhoto(-1)">❮</span>
-    <img id="lightbox-img">
+    
+    <div class="lightbox-content">
+        <img id="lightbox-img">
+        <!-- Vodoznak -->
+        <div class="watermark">
+            <img src="web_images/logo-lama.png" alt="Logo Lama">
+            <span>Berounka 2020</span>
+        </div>
+    </div>
+    
     <span class="next" onclick="changePhoto(1)">❯</span>
 </div>
 
