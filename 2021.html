@@ -77,6 +77,8 @@ header h1{
 .galerie img,
 .galerie video{
     width:100%;
+    height: 200px;
+    object-fit: cover; /* V mřížce ořízneme na stejné kostky */
     border-radius:15px;
     box-shadow:0 2px 10px rgba(0,0,0,.2);
     transition:0.3s;
@@ -94,7 +96,7 @@ footer{
     color:#666;
 }
 
-/* Lightbox styly */
+/* --- OPRAVENÝ LIGHTBOX --- */
 .lightbox{
     display:none;
     position:fixed;
@@ -103,15 +105,30 @@ footer{
     top:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.92);
+    background:rgba(0,0,0,0.95);
     justify-content:center;
     align-items:center;
 }
 
-.lightbox img{
-    max-width:90%;
-    max-height:85%;
-    border-radius:15px;
+.lightbox-wrapper{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 90%;
+    height: 85%;
+}
+
+/* Zajištění, že se fotka na výšku i šířku přizpůsobí a NIKDY neořízne */
+.lightbox img,
+.lightbox video{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    border-radius:10px;
+    display: none;
 }
 
 .close,
@@ -122,6 +139,8 @@ footer{
     font-size:50px;
     cursor:pointer;
     user-select:none;
+    z-index: 10000;
+    text-shadow: 0px 2px 10px rgba(0,0,0,0.5);
 }
 
 .close{
@@ -137,71 +156,41 @@ footer{
     right:20px;
 }
 
-/* Styly pro vodoznak v lightboxu */
-.lightbox-wrapper {
-    position: relative; /* Nutné pro umístění vodoznaku uvnitř */
-    display: inline-block; /* Aby obalil obrázek */
-}
-
+/* --- OPRAVENÝ VODOZNAK --- */
 .watermark {
     position: absolute;
-    right: 30px; /* Umístění vpravo */
-    bottom: 30px; /* Umístění dole */
+    right: 20px;
+    bottom: 20px;
     text-align: center;
-    pointer-events: none; /* Kliknutí projdou skrze vodoznak na obrázek */
-    z-index: 10; /* Zajistí, že bude nad obrázkem */
+    pointer-events: none;
+    z-index: 10;
 }
 
 .watermark img {
-    width: 180px; /* Šířka loga */
-    max-width: 25vw; /* Přizpůsobení na menších obrazovkách */
-    opacity: 0.9; /* Jemná průhlednost */
-    /* Efekt pro bílé logo se stínem (pro lepší čitelnost) */
-    filter: 
-        brightness(0) 
-        invert(1) 
-        drop-shadow(3px 3px 8px rgba(0,0,0,0.9)); 
+    width: 140px;
+    max-width: 25vw;
+    opacity: 0.85;
+    /* Odstraněn invert filter, který dělal bílý čtverec. Ponechán jen stín. */
+    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.8));
 }
 
 .watermark div {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    letter-spacing: 4px;
-    text-shadow: 3px 3px 8px black;
-    margin-top: 8px; /* Mezera mezi logem a textem */
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,1);
+    margin-top: 5px;
 }
 
 @media (max-width:700px){
-
-    header h1{
-        font-size:36px;
-    }
-
-    .close,
-    .prev,
-    .next{
-        font-size:40px;
-    }
-
-    .galerie{
-        grid-template-columns:1fr;
-    }
-
-    /* Úprava vodoznaku pro mobily */
-    .watermark {
-        right: 15px;
-        bottom: 15px;
-    }
-
-    .watermark img {
-        width: 100px;
-    }
-
-    .watermark div {
-        font-size: 16px;
-        letter-spacing: 2px;
-    }
+    header h1{ font-size:36px; }
+    .close, .prev, .next{ font-size:40px; }
+    .galerie{ grid-template-columns:1fr; }
+    
+    .watermark { right: 10px; bottom: 10px; }
+    .watermark img { width: 80px; }
+    .watermark div { font-size: 14px; letter-spacing: 1px; }
 }
 </style>
 </head>
@@ -219,64 +208,17 @@ footer{
 </a>
 
 <div class="text">
-
 <h2>Vltava 2021</h2>
-
-<p>
-Po úspěšné premiéře na Berounce jsme se v roce 2021 rozhodli posunout naše
-vodácké dobrodružství zase o kus dál. Padla volba na Vltavu,
-jednu z nejkrásnějších a zároveň nejznámějších českých řek.
-</p>
-
-<p>
-Aby to nebylo příliš jednoduché, vyrazili jsme vlastním autobusem,
-který se stal naším pojízdným zázemím. Nechyběly stany, výčep a pořádná
-dávka dobré nálady, takže kempování mělo úplně jiný rozměr.
-Jako základní tábor jsme zvolili Zlatou Korunu,
-odkud jsme vyráželi za dalšími zážitky.
-</p>
-
-<p>
-A protože jsme už měli něco odjeto, nechali jsme minulý rok
-s nafukovacími „gumáky“ za sebou.
-V roce 2021 přišel čas na větší rafty, více lidí na palubě
-a ještě větší porci zábavy, smíchu a nezapomenutelných momentů.
-</p>
-
-<p>
-<b>Vltava 2021 – když už na vodu, tak ve velkém! 🚣🍺🏕️🚌</b>
-</p>
-
+<p>Po úspěšné premiéře na Berounce jsme se v roce 2021 rozhodli posunout naše vodácké dobrodružství zase o kus dál...</p>
 <h3>🗓️ Trasa plavby</h3>
-
-<p>
-<strong>22. 7. 2021 (čtvrtek)</strong><br>
-Příjezd do Zlaté Koruny a vybudování základního tábora.
-</p>
-
-<p>
-<strong>23. 7. 2021 (pátek)</strong><br>
-Vyšší Brod → U Fíka
-</p>
-
-<p>
-<strong>24. 7. 2021 (sobota)</strong><br>
-U Fíka → Český Krumlov
-</p>
-
-<p>
-<strong>25. 7. 2021 (neděle)</strong><br>
-Český Krumlov (U Trojice) → Zlatá Koruna
-</p>
-
+<p><strong>22. 7. 2021 (čtvrtek)</strong><br>Příjezd do Zlaté Koruny...</p>
 </div>
 
 <div class="mapa">
     <img src="fotky/2021/mapa.png" alt="Mapa plavby">
 </div>
 
-<div class="galerie" id="galerie">
-    </div>
+<div class="galerie" id="galerie"></div>
 
 <div style="text-align:center;">
     <a href="index.html" class="back-button">
@@ -294,148 +236,91 @@ U Fíka → Český Krumlov
     <span class="close" onclick="closePhoto()">✕</span>
     <span class="prev" onclick="changePhoto(-1)">❮</span>
 
-    <div class="lightbox-wrapper"><!DOCTYPE html>
-<html lang="cs">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vltava 2021</title>
+    <div class="lightbox-wrapper">
+        <img id="lightbox-img" alt="Fotka">
+        <video id="lightbox-video" controls></video>
 
-<style>
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f2f2f2;
-    color:#333;
+        <div class="watermark">
+            <img src="web_images/logo-lama.png" alt="T-Lama">
+            <div>VLTAVA 2021</div>
+        </div>
+    </div>
+
+    <span class="next" onclick="changePhoto(1)">❯</span>
+</div>
+
+<script>
+const galerie = document.getElementById('galerie');
+const media = []; 
+let current = 0;
+
+// Načtení 25 fotek
+for(let i = 1; i <= 25; i++){
+    const src = `fotky/2021/${i}.jpeg`;
+    media.push({ type: 'image', src: src });
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.loading = "lazy";
+    img.onclick = () => openLightbox(i - 1);
+    galerie.appendChild(img);
 }
 
-header{
-    background:#0b4f6c;
-    color:white;
-    padding:40px 20px;
-    text-align:center;
+// Načtení videa (26)
+const videoSrc = 'fotky/2021/26.mp4';
+media.push({ type: 'video', src: videoSrc });
+
+const video = document.createElement('video');
+video.src = videoSrc;
+video.preload = "metadata";
+video.onclick = () => openLightbox(media.length - 1);
+galerie.appendChild(video);
+
+function updateLightboxContent() {
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxVideo = document.getElementById("lightbox-video");
+    const currentMedia = media[current];
+
+    lightboxImg.style.display = 'none';
+    lightboxVideo.style.display = 'none';
+    lightboxVideo.pause();
+
+    if (currentMedia.type === 'image') {
+        lightboxImg.src = currentMedia.src;
+        lightboxImg.style.display = 'block';
+    } else if (currentMedia.type === 'video') {
+        lightboxVideo.src = currentMedia.src;
+        lightboxVideo.style.display = 'block';
+        lightboxVideo.play();
+    }
 }
 
-header h1{
-    margin:0;
-    font-size:48px;
+function openLightbox(i){
+    current = i;
+    document.getElementById("lightbox").style.display = "flex";
+    updateLightboxContent();
 }
 
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
+function closePhoto(){
+    document.getElementById("lightbox").style.display = "none";
+    document.getElementById("lightbox-video").pause();
 }
 
-.back-button{
-    display:inline-block;
-    background:#0b4f6c;
-    color:white;
-    text-decoration:none;
-    padding:12px 22px;
-    border-radius:10px;
-    margin:20px 0;
-    font-weight:bold;
-    transition:0.3s;
+function changePhoto(step){
+    current += step;
+    if(current < 0) current = media.length - 1;
+    if(current >= media.length) current = 0;
+    updateLightboxContent();
 }
 
-.back-button:hover{
-    background:#146b8c;
-}
+document.addEventListener("keydown", function(e){
+    if(document.getElementById("lightbox").style.display === "flex"){
+        if(e.key === "ArrowLeft") changePhoto(-1);
+        if(e.key === "ArrowRight") changePhoto(1);
+        if(e.key === "Escape") closePhoto();
+    }
+});
+</script>
 
-.text{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-    line-height:1.8;
-    margin-bottom:30px;
-}
-
-.mapa{
-    text-align:center;
-    margin-bottom:40px;
-}
-
-.mapa img{
-    width:100%;
-    max-width:1000px;
-    border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,.2);
-}
-
-.galerie{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-    gap:20px;
-}
-
-.galerie img,
-.galerie video{
-    width:100%;
-    height: 200px; /* Sjednocení výšky v mřížce */
-    object-fit: cover; /* Aby se fotky/videa nedeformovaly */
-    border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,.2);
-    transition:0.3s;
-    cursor:pointer;
-}
-
-.galerie img:hover,
-.galerie video:hover{
-    transform:scale(1.03);
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#666;
-}
-
-.lightbox{
-    display:none;
-    position:fixed;
-    z-index:9999;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.92);
-    justify-content:center;
-    align-items:center;
-}
-
-.lightbox-wrapper{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    max-width:90%;
-    max-height:85%;
-}
-
-.lightbox img,
-.lightbox video{
-    max-width:100%;
-    max-height:85vh;
-    border-radius:15px;
-    display:none; /* Výchozí stav, JS zapne správné médium */
-}
-
-.close,
-.prev,
-.next{
-    position:absolute;
-    color:white;
-    font-size:50px;
-    cursor:pointer;
-    user-select:none;
-    z-index: 10000;
-}
-
-.close{
-    top:20px;
-    right:30px;
-}
-
-.prev{
+</body>
+</html>
