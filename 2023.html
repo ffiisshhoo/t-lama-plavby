@@ -21,7 +21,7 @@
         .back-button:hover { transform: scale(1.05); background: #1b4d29; }
         
         .text { background: var(--box-bg); padding: 30px; border-radius: 20px; box-shadow: var(--card-shadow); margin-bottom: 30px; line-height: 1.8; }
-        .text a { color: var(--header-bg); font-weight:bold; }
+        .text a { color: var(--header-bg); font-weight:bold; text-decoration: underline; }
         
         .mapa { text-align:center; margin-bottom:40px; }
         .mapa img { width:100%; max-width:900px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
@@ -52,71 +52,3 @@
 
 <div class="container">
     <a href="index.html" class="back-button">⬅ ZPĚT NA ÚVODNÍ STRÁNKU</a>
-    
-    <div class="text">
-        <h2>🌊 Berounka 2023 – první plastové kánoe a velké plány</h2>
-        <p>Rok 2023 přinesl několik změn a naše parta se trochu zmenšila. O to větší jsme ale měli chuť znovu vyrazit na vodu. Tentokrát už opravdu i s dětmi. Gumové rafty jsme vyměnili za plastové kánoe a poprvé jsme se rozdělili – každý dospělý dostal do své kánoe jednoho malého námořníka, který se občas proměnil v kapitána a určoval směr plavby.</p>
-        
-        <h3>🚣 Den první – Dolanský most a velké plány</h3>
-        <p>Ve dnech <strong>20.–23. července 2023</strong> jsme vyrazili do Liblína. V pátek ráno jsme se nechali odvést k Dolanskému mostu, kde jsme plní sil usedli do zapůjčených plastových kánoí. Plán byl jasný – doplout až do <a href="https://www.kempkobylka.cz/" target="_blank">Kempu Kobylka</a>.</p>
-        
-        <h3>🛟 Záchrana u Žíkovského mlýna</h3>
-        <p>U jezu Žíkovský mlýn nás potkalo doslova vysvobození. Narazili jsme na majitele půjčovny <a href="https://www.h2osport.cz/" target="_blank">H2O SPORT Sikyta</a>, který, když viděl vyčerpané ženy a děti, se nad námi slitoval a naložil nás i s kánoemi. Tam sklidil od místních lehký posměch, co to zase veze za výpravu. 😄</p>
-        
-        <h3>🚣 Druhý pokus</h3>
-        <p>My ostatní jsme v sobotu znovu vypluli směrem ke <a href="https://www.kempupotucku.cz/" target="_blank">Kempu U Potůčku</a>. Poslední večer jsme si užili v kempu u vody s dobrou náladou. A tentokrát jsme byli připraveni i technicky – nové GoPro už bylo k dispozici, takže žádný utopený hrdina a všechny zážitky byly poctivě zaznamenány! 📷😄</p>
-        
-        <p style="text-align:center;font-size:1.2em;"><strong>Možná nás bylo o pár méně, ale o zážitky, smích a společné chvíle rozhodně nouze nebyla. ❤️🚣‍♂️🌊</strong></p>
-    </div>
-
-    <div class="mapa"><img src="fotky/2023/mapa.png" alt="Mapa plavby"></div>
-
-    <div class="stats-container">
-        <div class="stat-card"><span class="value">4</span><div class="label">Dny na vodě</div></div>
-        <div class="stat-card"><span class="value">2</span><div class="label">Plastové kánoe</div></div>
-        <div class="stat-card"><span class="value">1</span><div class="label">Zachránce Sikyta</div></div>
-        <div class="stat-card"><span class="value">∞</span><div class="label">Zážitků</div></div>
-    </div>
-
-    <div class="galerie" id="galerie"></div>
-
-    <div style="text-align: center; margin-top: 50px;">
-        <a href="index.html" class="back-button">⬅ ZPĚT NA ÚVODNÍ STRÁNKU</a>
-    </div>
-</div>
-
-<div id="lightbox" class="lightbox">
-    <span class="close" onclick="closePhoto()">✕</span>
-    <div class="lightbox-wrapper">
-        <img id="lightbox-img" style="display:none;">
-        <video id="lightbox-video" controls style="display:none;"></video>
-    </div>
-</div>
-
-<script>
-    const galerie = document.getElementById('galerie');
-    const media = []; 
-    const videoNumbers = [20]; // Uprav podle toho, které číslo je video
-    for(let i = 1; i <= 20; i++){
-        const isVideo = videoNumbers.includes(i);
-        const src = `fotky/2023/${i}.${isVideo ? 'mp4' : 'jpeg'}`;
-        media.push({ type: isVideo ? 'video' : 'image', src: src });
-        if (isVideo) {
-            const v = document.createElement('video'); v.src = src; v.muted = true; v.loop = true; v.playsInline = true;
-            v.onmouseenter = () => v.play(); v.onmouseleave = () => { v.pause(); v.currentTime = 0; };
-            v.onclick = () => openLightbox(media.length - 1); galerie.appendChild(v);
-        } else {
-            const img = document.createElement('img'); img.src = src; img.onclick = () => openLightbox(media.length - 1); galerie.appendChild(img);
-        }
-    }
-    function openLightbox(i) {
-        document.getElementById("lightbox").style.display = "flex";
-        const m = media[i];
-        if(m.type === 'video') { document.getElementById("lightbox-video").src = m.src; document.getElementById("lightbox-video").style.display = 'block'; document.getElementById("lightbox-video").play(); }
-        else { document.getElementById("lightbox-img").src = m.src; document.getElementById("lightbox-img").style.display = 'block'; }
-    }
-    function closePhoto() { document.getElementById("lightbox").style.display = "none"; document.getElementById("lightbox-video").pause(); document.getElementById("lightbox-video").style.display = 'none'; document.getElementById("lightbox-img").style.display = 'none'; }
-</script>
-
-</body>
-</html>
