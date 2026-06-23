@@ -96,7 +96,7 @@ footer{
 
 /* Lightbox */
 
-#lightbox{
+.lightbox{
     display:none;
     position:fixed;
     z-index:9999;
@@ -104,16 +104,55 @@ footer{
     top:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.9);
+    background:rgba(0,0,0,0.92);
     justify-content:center;
     align-items:center;
-    cursor:pointer;
 }
 
-#lightbox img{
-    max-width:95%;
-    max-height:95%;
+.lightbox img{
+    max-width:90%;
+    max-height:85%;
     border-radius:15px;
+}
+
+.close,
+.prev,
+.next{
+    position:absolute;
+    color:white;
+    font-size:50px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.close{
+    top:20px;
+    right:30px;
+}
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
+
+@media (max-width:700px){
+
+    header h1{
+        font-size:36px;
+    }
+
+    .close,
+    .prev,
+    .next{
+        font-size:40px;
+    }
+
+    .galerie{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
@@ -131,6 +170,7 @@ footer{
 </a>
 
 <div class="text">
+
 <h2>Vltava 2021</h2>
 
 <p>
@@ -200,22 +240,26 @@ U Fíka → Český Krumlov
 🚣 Vltava 2021 • 🚌 Vlastní autobus • 🍺 Výčep • 🏕️ Zlatá Koruna
 </footer>
 
-<div id="lightbox">
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closePhoto()">✕</span>
+    <span class="prev" onclick="changePhoto(-1)">❮</span>
     <img id="lightbox-img">
+    <span class="next" onclick="changePhoto(1)">❯</span>
 </div>
 
 <script>
 const galerie = document.getElementById('galerie');
+const photos = [];
+let current = 0;
 
-for(let i=1;i<=25;i++){
+for(let i = 1; i <= 25; i++){
+    const src = `fotky/2021/${i}.jpeg`;
+    photos.push(src);
+
     const img = document.createElement('img');
-    img.src = `fotky/2021/${i}.jpeg`;
+    img.src = src;
     img.loading = "lazy";
-
-    img.addEventListener('click', () => {
-        document.getElementById('lightbox-img').src = img.src;
-        document.getElementById('lightbox').style.display = 'flex';
-    });
+    img.onclick = () => openPhoto(i - 1);
 
     galerie.appendChild(img);
 }
@@ -226,8 +270,31 @@ video.controls = true;
 video.preload = "metadata";
 galerie.appendChild(video);
 
-document.getElementById('lightbox').addEventListener('click', () => {
-    document.getElementById('lightbox').style.display = 'none';
+function openPhoto(i){
+    current = i;
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = photos[current];
+}
+
+function closePhoto(){
+    document.getElementById("lightbox").style.display = "none";
+}
+
+function changePhoto(step){
+    current += step;
+
+    if(current < 0) current = photos.length - 1;
+    if(current >= photos.length) current = 0;
+
+    document.getElementById("lightbox-img").src = photos[current];
+}
+
+document.addEventListener("keydown", function(e){
+    if(document.getElementById("lightbox").style.display === "flex"){
+        if(e.key === "ArrowLeft") changePhoto(-1);
+        if(e.key === "ArrowRight") changePhoto(1);
+        if(e.key === "Escape") closePhoto();
+    }
 });
 </script>
 
