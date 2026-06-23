@@ -148,7 +148,7 @@ footer{
 .prev{ left:20px; }
 .next{ right:20px; }
 
-/* --- REÁLNÝ VODOZNAK T-LAMA V BÍLÉ BARVĚ --- */
+/* --- CHYTRÝ VODOZNAK PŘÍMO Z OBRÁZKU --- */
 .watermark {
     position: absolute;
     text-align: center;
@@ -158,45 +158,34 @@ footer{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.9));
+    background: rgba(255, 255, 255, 0.8); /* Jemný bílý podklad, aby logo na tmavé fotce vyniklo */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-.watermark svg {
-    width: 130px;
+.watermark img {
+    width: 110px;
     height: auto;
-}
-
-/* Všechny křivky a texty loga budou svítit čistě bíle */
-.watermark svg path, 
-.watermark svg text {
-    fill: none;
-    stroke: white;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.watermark svg text {
-    font-family: 'Arial Black', Gadget, sans-serif;
-    font-weight: bold;
-    fill: white;
-    stroke: none;
+    /* Tento řádek zajistí, že bílé pozadí z obrázku loga zmizí a zbyde jen černá lama a text */
+    mix-blend-mode: multiply; 
 }
 
 .watermark .river-title {
-    color: white;
-    font-size: 20px;
+    color: #0b4f6c; /* Ladí s barvou hlavičky webu */
+    font-size: 16px;
     font-weight: bold;
-    letter-spacing: 4px;
-    margin-top: -5px;
+    letter-spacing: 2px;
+    margin-top: 5px;
     font-family: Arial, sans-serif;
 }
 
 @media (max-width:700px){
     header h1{ font-size:36px; }
     .close, .prev, .next{ font-size:40px; }
-    .watermark svg { width: 90px; }
-    .watermark .river-title { font-size: 14px; letter-spacing: 2px; }
+    .watermark { padding: 6px; }
+    .watermark img { width: 75px; }
+    .watermark .river-title { font-size: 12px; letter-spacing: 1px; }
 }
 </style>
 </head>
@@ -271,26 +260,7 @@ a ještě větší porci zábavy, smíchu a nezapomenutelných momentů.
         <video id="lightbox-video" controls style="display:none;"></video>
 
         <div id="watermark" class="watermark">
-            <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-                <path id="textArcTop" d="M 30,110 A 70,70 0 1,1 170,110" fill="none" stroke="none" />
-                <path id="textArcBottom" d="M 170,120 A 70,70 0 0,1 30,120" fill="none" stroke="none" />
-                
-                <text font-size="20" text-anchor="middle"><textPath href="#textArcTop" startOffset="50%">T - Lama</textPath></text>
-                <text font-size="18" text-anchor="middle"><textPath href="#textArcBottom" startOffset="50%">z Podmezí</textPath></text>
-                
-                <path d="M 80,75 C 75,50 65,35 65,35 C 65,35 77,42 83,58 C 87,55 93,53 100,53 C 107,53 113,55 117,58 C 123,42 135,35 135,35 C 135,35 125,50 120,75" />
-                <path d="M 81,70 C 85,68 88,72 92,70 C 95,68 96,62 100,62 C 104,62 105,68 108,70 C 112,72 115,68 119,70" />
-                <path d="M 80,75 C 73,85 71,95 72,108 C 74,120 78,123 78,130 C 74,133 72,138 73,144 C 74,152 79,158 83,165 C 80,172 75,178 74,185" />
-                <path d="M 120,75 C 127,85 129,95 128,108 C 126,120 122,123 122,130 C 126,133 128,138 127,144 C 126,152 121,158 117,165 C 120,172 125,178 126,185" />
-                <path d="M 74,185 C 72,188 74,192 77,192 C 81,192 81,186 85,188 C 88,190 86,195 90,195 C 94,195 95,190 98,188 C 102,186 102,192 106,192 C 110,192 110,186 114,188 C 117,190 116,195 120,195 C 124,195 124,188 126,185" />
-                <path d="M 72,60 C 70,48 73,43 73,43 C 73,43 76,46 76,55" />
-                <path d="M 128,60 C 130,48 127,43 127,43 C 127,43 124,46 124,55" />
-                <path d="M 85,98 C 85,93 91,93 91,98" stroke-width="3" />
-                <path d="M 115,98 C 115,93 109,93 109,98" stroke-width="3" />
-                <path d="M 88,115 C 88,105 112,105 112,115 C 112,135 88,135 88,115 Z" />
-                <path d="M 100,113 C 95,113 94,120 100,120 C 106,120 105,113 100,113 Z" fill="white" />
-                <path d="M 100,120 L 100,130 C 95,130 95,134 100,134 C 105,134 105,130 100,130" />
-            </svg>
+            <img src="web_images/logo-lama.png" alt="T-Lama z Podmezí">
             <div class="river-title">VLTAVA 2021</div>
         </div>
     </div>
@@ -392,6 +362,3 @@ document.addEventListener("keydown", function(e){
     }
 });
 </script>
-
-</body>
-</html>
