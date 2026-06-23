@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T-Lama z Podmezí</title>
+    <!-- Tvoje ikonka v záložce -->
+    <link rel="icon" href="web_images/tlama.png" type="image/png">
     <style>
         :root { --bg: #f0f7f4; --card-bg: #ffffff; --accent: #d85f98; --text: #333; --subtext: #6a513a; }
         [data-theme="dark"] { --bg: #121e24; --card-bg: #1a2a32; --accent: #ff9f1c; --text: #e0e7e9; --subtext: #a0b4c0; }
 
-        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--bg); color: var(--text); transition: 0.4s; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            background-color: var(--bg); 
+            background-image: url('https://www.transparenttextures.com/patterns/waves.png');
+            background-attachment: fixed;
+            color: var(--text); 
+            transition: 0.4s; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
         
+        .weather-widget { position: fixed; top: 10px; left: 10px; z-index: 1000; width: 200px; background: var(--card-bg); padding: 10px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
         .header { display: flex; align-items: center; justify-content: center; gap: 40px; margin: 40px 0; text-align: center; }
         .side-logo { width: 120px; }
         h1 { font-size: 70px; color: var(--accent); margin: 0; }
@@ -18,11 +34,11 @@
 
         .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; width: 90%; margin-bottom: 50px; }
         
-        /* Malé widgety pro odkazy */
+        /* Widgety odkazy */
         .link-widget { background: var(--card-bg); padding: 10px 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 1px solid #eee; }
         .link-widget a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 16px; }
 
-        /* Velké karty pro Naše řeky */
+        /* Karty plaveb */
         .rok-card { background: var(--card-bg); padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid transparent; transition: 0.3s; }
         .rok-card:hover { transform: translateY(-5px); border-color: var(--accent); }
         .rok-card a { font-size: 22px; font-weight: bold; color: var(--text); text-decoration: none; display: block; }
@@ -37,6 +53,10 @@
 </head>
 <body>
 
+<div class="weather-widget">
+    <script type="text/javascript" src="https://www.in-pocasi.cz/widget/widget.php?typ=1&mesto=plzen"></script>
+</div>
+
 <div class="theme-switch" id="themeBtn" onclick="toggleTheme()">🌙</div>
 
 <div class="header">
@@ -50,14 +70,14 @@
 </div>
 
 <div class="container">
-    <!-- Malé widgety nahoře -->
+    <!-- Widgety nahoře -->
     <div style="grid-column: 1 / -1; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
         <div class="link-widget"><a href="https://www.vodackanavigace.cz/" target="_blank">🛶 Vodácká navigace</a></div>
         <div class="link-widget"><a href="https://www.chmi.cz/" target="_blank">☀️ Předpověď počasí</a></div>
         <div class="link-widget"><a href="https://www.raft.cz/sjizdnost.aspx" target="_blank">🌊 Sjízdnost řek (Raft.cz)</a></div>
     </div>
 
-    <!-- Velké karty pro naše řeky -->
+    <!-- Historie plaveb -->
     <div class="rok-card"><a href="2020.html">2020 – Berounka</a></div>
     <div class="rok-card"><a href="2021.html">2021 – Vltava</a></div>
     <div class="rok-card"><a href="2022.html">2022 – Otava</a></div>
@@ -66,15 +86,15 @@
     <div class="rok-card"><a href="2025.html">2025 – Ohře</a></div>
     <div class="rok-card"><a href="2026.html">2026 – Vltava</a></div>
 
-    <!-- Tabulka sjízdnosti úplně dole -->
+    <!-- Tabulka sjízdnosti s tečkami -->
     <div class="rok-card" style="grid-column: 1 / -1; cursor: default;">
         <h3>Stav našich oblíbených toků</h3>
         <table>
             <tr><th>Řeka</th><th>Stav</th></tr>
-            <tr><td>Vltava</td><td style="color: green;">✔ Sjízdná</td></tr>
-            <tr><td>Berounka</td><td style="color: green;">✔ Sjízdná</td></tr>
-            <tr><td>Otava</td><td style="color: green;">✔ Sjízdná</td></tr>
-            <tr><td>Ohře</td><td style="color: orange;">⚠ Omezený průtok</td></tr>
+            <tr><td>Vltava</td><td><span style="color: green; font-size: 20px;">●</span> Sjízdná</td></tr>
+            <tr><td>Berounka</td><td><span style="color: green; font-size: 20px;">●</span> Sjízdná</td></tr>
+            <tr><td>Otava</td><td><span style="color: green; font-size: 20px;">●</span> Sjízdná</td></tr>
+            <tr><td>Ohře</td><td><span style="color: orange; font-size: 20px;">●</span> Omezený průtok</td></tr>
         </table>
     </div>
 </div>
