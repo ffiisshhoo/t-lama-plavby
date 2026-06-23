@@ -9,6 +9,146 @@
         @media (prefers-color-scheme: dark) {
             :root { --bg-color: #121212; --text-color: #e0e0e0; --box-bg: #1e1e1e; --header-bg: #20472a; }
         }
+        body { margin:0; font-family:Arial,sans-serif; background:var(--bg-color); color:var(--text-color); }
+        header { background:var(--header-bg); color:white; padding:40px 20px; text-align:center; position:relative; }
+        header::after { content: "BEROUNKA 2023"; position: absolute; top: 10px; right: 20px; font-size: 0.8rem; opacity: 0.3; pointer-events: none; }
+        .container { max-width:1200px; margin:auto; padding:20px; }
+        .back-button { display:inline-block; background:var(--header-bg); color:white; text-decoration:none; padding:12px 22px; border-radius:10px; margin:20px 0; font-weight:bold; }
+        .text { background:var(--box-bg); padding:25px; border-radius:15px; box-shadow:var(--card-shadow); margin-bottom:30px; line-height:1.8; }
+        .text a { color:#2f6b3f; font-weight:bold; }
+        .mapa { text-align:center; margin-bottom:40px; }
+        .mapa img { width:100%; max-width:900px; border-radius:15px; box-shadow:0 2px 10px rgba(0,0,0,.2); }
+        .stats-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; max-width:1000px; margin:0 auto 40px auto; }
+        .stat-card { background:var(--box-bg); padding:20px; border-radius:20px; text-align:center; box-shadow:var(--card-shadow); transition:.3s; }
+        .value { font-size:28px; font-weight:bold; color:#2f6b3f; display:block; }
+        .galerie { column-count:4; column-gap:20px; width:100%; margin-top:40px; }
+        @media (max-width:1100px){ .galerie{column-count:3;} }
+        @media (max-width:800px){ .galerie{column-count:2;} }
+        @media (max-width:500px){ .galerie{column-count:1;} }
+        .galerie img, .galerie video { display:inline-block; width:100%; border-radius:15px; cursor:pointer; margin-bottom:20px; break-inside:avoid; transition:.3s; }
+        .galerie img:hover, .galerie video:hover { transform:scale(1.03); }
+        
+        /* LIGHTBOX */
+        .lightbox { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; }
+        .close { position:absolute; top:20px; right:30px; color:white; font-size:50px; font-weight:bold; cursor:pointer; z-index: 10000; }
+        .close:hover { color: #ff4757; }
+        .lightbox-wrapper { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; }
+        .lightbox img, .lightbox video { max-width:90vw; max-height:80vh; border-radius:10px; }
+    </style>
+</head>
+<body>
+
+<header><h1>🚣 Berounka 2023</h1></header>
+
+<div class="container">
+    <a href="index.html" class="back-button">← Zpět na přehled plaveb</a>
+
+    <div class="text">
+        <h2>🌊 Berounka 2023 – první plastové kánoe a velké plány</h2>
+        <p>Rok 2023 přinesl několik změn a naše parta se trochu zmenšila. O to větší jsme ale měli chuť znovu vyrazit na vodu. Tentokrát už opravdu i s dětmi. Gumové rafty jsme vyměnili za plastové kánoe a poprvé jsme se rozdělili – každý dospělý dostal do své kánoe jednoho malého námořníka, který se občas proměnil v kapitána a určoval směr plavby.</p>
+        <p>Ve dnech <strong>20.–23. července 2023</strong> jsme tedy opět vyrazili na naši tradiční vodáckou výpravu do <a href="https://www.kempkobylka.cz/" target="_blank">Kempu Kobylka</a>.</p>
+        
+        <h3>🚣 Den první – Dolanský most a velké plány</h3>
+        <p>V pátek ráno jsme se nechali odvést k Dolanskému mostu, kde jsme plní sil, odhodlání a nadšení usedli do zapůjčených plastových kánoí. Plán byl jasný – doplout až do Kobylky. Jenže, jak se později ukázalo, naše odhodlání bylo o něco větší než naše fyzička.</p>
+        
+        <h3>🛟 Záchrana u Žíkovského mlýna</h3>
+        <p>Naštěstí nás u jezu Žíkovský mlýn potkalo vysvobození. Narazili jsme na majitele půjčovny <a href="https://www.h2osport.cz/" target="_blank">H2O SPORT Sikyta</a>, který se nad námi slitoval a i když lodě nebyly z jeho půjčovny, naložil nás i s kánoemi a odvezl zpět do Kobylky.</p>
+        
+        <h3>🚣 Druhý pokus</h3>
+        <p>My ostatní jsme po nočním odpočinku načerpali nové síly a v sobotu znovu vypluli, tentokrát směrem ke <a href="https://www.kempupotucku.cz/" target="_blank">Kempu U Potůčku</a>. Poslední večer jsme si užili v kempu u vody, s dobrou náladou a spoustou zážitků. A tentokrát jsme byli připraveni i technicky – nové GoPro už bylo k dispozici, takže všechny letošní zážitky mohly být poctivě zaznamenány. 📷😄</p>
+    </div>
+
+    <div class="mapa"><img src="fotky/2023/mapa.png" alt="Mapa plavby"></div>
+
+    <div class="stats-container">
+        <div class="stat-card"><span class="value">4</span><div>Dny na vodě</div></div>
+        <div class="stat-card"><span class="value">2</span><div>Plastové kánoe</div></div>
+        <div class="stat-card"><span class="value">1</span><div>Zachránce Sikyta</div></div>
+        <div class="stat-card"><span class="value">∞</span><div>Zážitků</div></div>
+    </div>
+
+    <div class="galerie" id="galerie"></div>
+</div>
+
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closePhoto()">&times;</span>
+    <div class="lightbox-wrapper">
+        <img id="lightbox-img" style="display:none;">
+        <video id="lightbox-video" controls style="display:none;"></video>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const galerie = document.getElementById('galerie');
+    const media = [];
+    const videoNumbers = [20];
+
+    for(let i=1; i<=20; i++){
+        const isVideo = videoNumbers.includes(i);
+        const src = `fotky/2023/${i}.${isVideo ? 'mp4' : 'jpeg'}`;
+        media.push({ type: isVideo ? 'video' : 'image', src: src });
+        
+        if(isVideo){
+            const v = document.createElement('video');
+            v.src = src; v.muted = true; v.loop = true; v.playsInline = true;
+            v.onmouseenter = () => v.play(); v.onmouseleave = () => { v.pause(); v.currentTime = 0; };
+            v.onclick = (function(index) { return function() { openLightbox(index); } })(media.length-1);
+            galerie.appendChild(v);
+        } else {
+            const img = document.createElement('img');
+            img.src = src;
+            img.onclick = (function(index) { return function() { openLightbox(index); } })(media.length-1);
+            galerie.appendChild(img);
+        }
+    }
+
+    function openLightbox(i) {
+        currentIndex = i;
+        document.getElementById("lightbox").style.display = "flex";
+        showMedia(currentIndex);
+    }
+
+    function showMedia(i) {
+        const m = media[i];
+        const v = document.getElementById("lightbox-video");
+        const img = document.getElementById("lightbox-img");
+        v.pause(); v.style.display = 'none'; img.style.display = 'none';
+        
+        if(m.type === 'video'){
+            v.src = m.src; v.style.display = 'block'; v.play();
+        } else {
+            img.src = m.src; img.style.display = 'block';
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if(document.getElementById("lightbox").style.display === "flex"){
+            if(e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % media.length; showMedia(currentIndex); }
+            else if(e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + media.length) % media.length; showMedia(currentIndex); }
+            else if(e.key === 'Escape') closePhoto();
+        }
+    });
+
+    function closePhoto() {
+        document.getElementById("lightbox").style.display = "none";
+        const v = document.getElementById("lightbox-video");
+        v.pause(); v.style.display = 'none';
+        document.getElementById("lightbox-img").style.display = 'none';
+    }
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berounka 2023</title>
+    <style>
+        :root { --bg-color: #f2f2f2; --text-color: #333; --box-bg: white; --header-bg: #2f6b3f; --card-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        @media (prefers-color-scheme: dark) {
+            :root { --bg-color: #121212; --text-color: #e0e0e0; --box-bg: #1e1e1e; --header-bg: #20472a; }
+        }
         body { margin:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg-color); color: var(--text-color); transition: 0.3s; }
         
         header { background: linear-gradient(135deg, var(--header-bg), #1b4d29); color: white; padding: 60px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: relative; }
