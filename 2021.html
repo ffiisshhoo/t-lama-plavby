@@ -17,9 +17,9 @@
     --shadow: rgba(11, 79, 108, 0.1);
 }
 
-/* Styly pro Temný Režim */
+/* Styly pro Temný Režim (Noční kemp u ohně) */
 [data-theme="dark"] {
-    --bg-color: #121e24; /* Noční kemp */
+    --bg-color: #121e24; 
     --text-color: #e0e7e9;
     --card-bg: #1a2a32;
     --primary: #1982b0;
@@ -34,7 +34,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.4s, color 0.4s;
-    /* Jemný vzor vlnek na pozadí pro oživení */
+    /* Jemný vzor vlnek na pozadí pro oživení webu */
     background-image: radial-gradient(circle at 100% 150%, transparent 24%, rgba(11, 79, 108, 0.03) 24%, rgba(11, 79, 108, 0.03) 28%, transparent 28%, transparent),
                       radial-gradient(circle at 0% 150%, transparent 24%, rgba(11, 79, 108, 0.03) 24%, rgba(11, 79, 108, 0.03) 28%, transparent 28%, transparent);
     background-size: 40px 40px;
@@ -52,7 +52,7 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 54px;
+    font-size: 48px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     animation: houpani 3s ease-in-out infinite alternate;
     display: inline-block;
@@ -180,7 +180,7 @@ header p {
     transform: scale(1.01);
 }
 
-/* --- PINTEREST GALERIE S FADE-IN EFEKTEM --- */
+/* --- PINTEREST GALERIE (BEZPEČNÁ FADE-IN ANIMACE) --- */
 .galerie {
     columns: 4 280px;
     column-gap: 20px;
@@ -193,18 +193,24 @@ header p {
     object-fit: contain;
     border-radius: 18px;
     box-shadow: 0 4px 15px rgba(0,0,0,.15);
-    transition: 0.3s transform, 0.3s box-shadow, 0.6s opacity, 0.6s transform;
     cursor: pointer;
     margin-bottom: 20px;
     display: block;
     break-inside: avoid;
     
-    /* Výchozí stav pro plynulé načítání scrollem (Fade-in) */
-    opacity: 0;
-    transform: translateY(30px);
+    /* Výchozí stav pro plynulé načítání scrollem (bezpečné hodnoty, aby fotky nezmizely) */
+    transition: 0.3s transform, 0.3s box-shadow, 0.5s opacity;
+    opacity: 1; 
 }
 
-/* Třída, kterou JavaScript přidá při doscrolování */
+/* Třída pro schování před doscrolováním */
+.galerie img.loading-effect,
+.galerie video.loading-effect {
+    opacity: 0.1;
+    transform: translateY(20px);
+}
+
+/* Třída pro plné zobrazení po doscrolování */
 .galerie img.visible,
 .galerie video.visible {
     opacity: 1;
@@ -225,7 +231,7 @@ footer {
     font-weight: 500;
 }
 
-/* --- FLOATING DARK MODE BUTTON --- */
+/* --- PLOVOUCÍ TLAČÍTKO TEMNÉHO REŽIMU --- */
 .theme-switch {
     position: fixed;
     bottom: 30px;
@@ -262,7 +268,7 @@ footer {
     background: rgba(0, 0, 0, 0.96);
     justify-content: center;
     align-items: center;
-    touch-action: none; /* Důležité pro plynulé swipování */
+    touch-action: none; /* Pro správný swipe na mobilech */
 }
 
 .lightbox-wrapper {
@@ -283,7 +289,7 @@ footer {
     object-fit: contain; 
     border-radius: 12px;
     display: none;
-    transition: transform 0.2s ease-out; /* Pro efekt tažení prstem */
+    transition: transform 0.2s ease-out; /* Pro vizuální odezvu prstu */
 }
 
 .close,
@@ -328,7 +334,7 @@ footer {
 @media (max-width:700px){
     header h1 { font-size: 36px; }
     .close, .prev, .next { font-size: 40px; }
-    .prev, .next { display: none; } /* Na mobilu stačí swipe, šipky schováme pro čistší vzhled */
+    .prev, .next { display: none; } /* Na mobilu stačí swipe prstem, šipky schováme */
     .watermark .river-title { font-size: 15px; letter-spacing: 2px; }
     .theme-switch { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 22px; }
 }
@@ -336,12 +342,11 @@ footer {
 </head>
 <body>
 
-<!-- Tlačítko pro Temný režim -->
+<!-- Plovoucí přepínač režimů -->
 <div class="theme-switch" id="themeBtn" onclick="toggleTheme()">🌙</div>
 
 <header>
     <h1>🚣 Vltava 2021</h1>
-    <br>
     <p>22. 7. 2021 – 25. 7. 2021</p>
 </header>
 
@@ -371,7 +376,7 @@ footer {
     </p>
 </div>
 
-<!-- --- SEKCE STATISTIK (POČÍTADLA) --- -->
+<!-- --- VYTUNĚNÉ STATISTIKY ROKU --- -->
 <div class="stats-grid">
     <div class="stat-card">
         <span class="stat-icon">📅</span>
@@ -399,7 +404,7 @@ footer {
     <img src="fotky/2021/mapa.png" alt="Mapa plavby">
 </div>
 
-<!-- Galerie (Fotky se doplňují přes JS) -->
+<!-- Prázdný kontejner, který JavaScript naplní fotkami -->
 <div class="galerie" id="galerie"></div>
 
 <div style="text-align:center; margin-top: 30px;">
@@ -414,7 +419,7 @@ footer {
 🚣 Vltava 2021 • 🚌 Vlastní autobus • 🍺 Výčep • 🏕️ Zlatá Koruna
 </footer>
 
-<!-- Lightbox -->
+<!-- Lightbox Okno -->
 <div id="lightbox" class="lightbox">
     <span class="close" onclick="closePhoto()">✕</span>
     <span class="prev" onclick="changePhoto(-1)">❮</span>
@@ -436,7 +441,7 @@ const galerie = document.getElementById('galerie');
 const media = []; 
 let current = 0;
 
-/* --- NAČTENÍ MÉDIÍ (Stejné jako původně) --- */
+/* --- AUTOMATICKÉ NAČTENÍ FOTEK A VIDEA --- */
 for(let i = 1; i <= 25; i++){
     const src = `fotky/2021/${i}.jpeg`;
     media.push({ type: 'image', src: src });
@@ -444,6 +449,7 @@ for(let i = 1; i <= 25; i++){
     const img = document.createElement('img');
     img.src = src;
     img.loading = "lazy";
+    img.classList.add('loading-effect'); // Výchozí schování pro efekt animace
     img.onclick = () => openLightbox(i - 1);
     galerie.appendChild(img);
 }
@@ -454,29 +460,39 @@ media.push({ type: 'video', src: videoSrc });
 const video = document.createElement('video');
 video.src = videoSrc;
 video.preload = "metadata";
+video.classList.add('loading-effect');
 video.onclick = () => openLightbox(media.length - 1);
 galerie.appendChild(video);
 
 
-/* --- VLEPŠENÍ 1: FADE-IN ANIMACE PŘI SCROLLOVÁNÍ --- */
+/* --- OPRAVENÁ A BEZPEČNÁ SCROLL ANIMACE --- */
 const nactiPrvkyScrollem = () => {
     const fotky = document.querySelectorAll('.galerie img, .galerie video');
-    fotky.forEach(polozka => {
-        const pozicePoložky = položka.getBoundingClientRect().top;
-        const vyskaOkna = window.innerHeight - 50;
-        if (pozicePoložky < vyskaOkna) {
+    fotky.forEach(položka => {
+        const pozicePolozky = položka.getBoundingClientRect().top;
+        const vyskaOkna = window.innerHeight || document.documentElement.clientHeight;
+        
+        // Pokud je fotka vidět v okně (s rezervou 100px dopředu), ukážeme ji
+        if (pozicePolozky < vyskaOkna + 100) {
             položka.classList.add('visible');
+            položka.classList.remove('loading-effect');
         }
     });
 };
+
+// Hlídání scrollu, změny velikosti okna i plného načtení stránky
 window.addEventListener('scroll', nactiPrvkyScrollem);
-// Spustíme jednou na začátku, aby se ukázaly první fotky nahoře
+window.addEventListener('resize', nactiPrvkyScrollem);
+window.addEventListener('load', nactiPrvkyScrollem);
+
+// Pojistky, které fotky zaručeně odkryjí hned po vygenerování stránky
 setTimeout(nactiPrvkyScrollem, 100);
+setTimeout(nactiPrvkyScrollem, 600); 
 
 
-/* --- VYLEPŠENÍ 2: SWIPE (POSUNUTÍ PRSTEM) NA MOBILU --- */
+/* --- OVLÁDÁNÍ SWIPEM (TAŽENÍM PRSTU) NA MOBILU --- */
 const wrapper = document.getElementById('lightbox-wrapper');
-letstartX = 0;
+let startX = 0;
 let vezaX = 0;
 let jeTahany = false;
 
@@ -490,7 +506,6 @@ wrapper.addEventListener('touchmove', (e) => {
     const currentX = e.touches[0].clientX;
     vezaX = currentX - startX;
     
-    // Mírný vizuální posun fotky při tažení pro lepší odezvu
     const aktivniElement = media[current].type === 'image' ? document.getElementById("lightbox-img") : document.getElementById("lightbox-video");
     if(Math.abs(vezaX) < 150) {
         aktivniElement.style.transform = `translateX(${vezaX}px)`;
@@ -501,18 +516,18 @@ wrapper.addEventListener('touchend', () => {
     if (!jeTahany) return;
     jeTahany = false;
     const aktivniElement = media[current].type === 'image' ? document.getElementById("lightbox-img") : document.getElementById("lightbox-video");
-    aktivniElement.style.transform = `translateX(0px)`; // Vrátit pozici zpět
+    aktivniElement.style.transform = `translateX(0px)`; // Vrátí fotku na střed
 
     if (vezaX > 70) {
-        changePhoto(-1); // Swipe doprava -> předchozí fotka
+        changePhoto(-1); // Swipe doprava -> předchozí
     } else if (vezaX < -70) {
-        changePhoto(1);  // Swipe doleva -> další fotka
+        changePhoto(1);  // Swipe doleva -> další
     }
     vezaX = 0;
 });
 
 
-/* --- VYLEPŠENÍ 3: TEMNÝ REŽIM (DARK MODE) --- */
+/* --- PŘEPÍNAČ TEMNÉHO REŽIMU (DARK MODE) --- */
 function toggleTheme() {
     const aktuálníRezim = document.documentElement.getAttribute("data-theme");
     const tlacitko = document.getElementById("themeBtn");
@@ -524,12 +539,11 @@ function toggleTheme() {
         document.documentElement.setAttribute("data-theme", "dark");
         tlacitko.innerHTML = "☀️";
     }
-    // Po přepnutí režimu raději přepočítat pozici vodoznaku
     pozicionujVodoznak();
 }
 
 
-/* --- POZICIONOVÁNÍ VODOZNAKU & LIGHTBOX (Původní logika) --- */
+/* --- DYNAMICKÉ POZICIONOVÁNÍ VODOZNAKU S LIGHTBOXEM --- */
 function pozicionujVodoznak() {
     const activeElement = media[current].type === 'image' ? document.getElementById("lightbox-img") : document.getElementById("lightbox-video");
     const watermark = document.getElementById("watermark");
@@ -544,7 +558,7 @@ function pozicionujVodoznak() {
             
             watermark.style.right = `${rightPos}px`;
             watermark.style.bottom = `${bottomPos}px`;
-        }, 60); // Mírně zvýšeno pro plynulost animací
+        }, 60);
     }
 }
 
