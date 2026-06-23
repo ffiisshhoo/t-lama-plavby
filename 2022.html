@@ -3,33 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otava 2022</title>
+    <title>Berounka 2022</title>
     <style>
-        :root { --bg-color: #f2f2f2; --text-color: #333; --box-bg: white; --header-bg: #0b4f6c; --card-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        :root { --bg-color: #f2f2f2; --text-color: #333; --box-bg: white; --header-bg: #2f6b3f; --card-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         @media (prefers-color-scheme: dark) {
-            :root { --bg-color: #121212; --text-color: #e0e0e0; --box-bg: #1e1e1e; --header-bg: #073447; }
+            :root { --bg-color: #121212; --text-color: #e0e0e0; --box-bg: #1e1e1e; --header-bg: #20472a; }
         }
         body { margin:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg-color); color: var(--text-color); transition: 0.3s; }
         
-        /* --- MODERNÍ HLAVIČKA --- */
-        header { background: linear-gradient(135deg, var(--header-bg), #1a73e8); color: white; padding: 60px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        header { background: linear-gradient(135deg, var(--header-bg), #1b4d29); color: white; padding: 60px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: relative; }
         header h1 { margin: 0; font-size: 3.5rem; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 4px 6px rgba(0,0,0,0.3); }
+        header::after { content: "BEROUNKA 2022"; position: absolute; top: 10px; right: 20px; font-size: 0.8rem; opacity: 0.3; pointer-events: none; }
         header p { margin-top: 10px; font-size: 1.2rem; opacity: 0.9; }
 
         .container { max-width:1200px; margin:auto; padding:20px; }
         .back-button { display:inline-block; background: var(--header-bg); color:white; text-decoration:none; padding:15px 30px; border-radius:30px; margin:20px 0; font-weight:bold; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .back-button:hover { transform: scale(1.05); background: #1a73e8; }
+        .back-button:hover { transform: scale(1.05); background: #1b4d29; }
         
         .text { background: var(--box-bg); padding: 30px; border-radius: 20px; box-shadow: var(--card-shadow); margin-bottom: 30px; line-height: 1.8; }
-        .fun-fact { background: #fff3cd; color: #856404; padding: 20px; border-radius: 15px; margin: 25px 0; border-left: 8px solid #ffc107; }
-        
-        .mapa { text-align:center; margin-bottom:40px; }
-        .mapa img { width:100%; max-width:1000px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
-        
-        .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto 40px auto; }
-        .stat-card { background: var(--box-bg); padding: 25px; border-radius: 20px; text-align: center; box-shadow: var(--card-shadow); transition: 0.3s; }
-        .stat-card:hover { transform: translateY(-10px); }
-        .value { font-size: 32px; font-weight: bold; color: #f4b400; display: block; }
         
         .galerie { column-count: 4; column-gap: 20px; width: 100%; margin-top: 40px; }
         @media (max-width: 1100px) { .galerie { column-count: 3; } }
@@ -46,46 +37,16 @@
 <body>
 
 <header>
-    <h1>🚣 OTAVA 2022</h1>
-    <p>...kde zůstala GoPro, tam začalo dobrodružství...</p>
+    <h1>🚣 BEROUNKA 2022</h1>
+    <p>...naše první společná vodácká výprava...</p>
 </header>
 
 <div class="container">
     <a href="index.html" class="back-button">⬅ ZPĚT NA ÚVODNÍ STRÁNKU</a>
-    
+
     <div class="text">
-        <h2>🌊 Ztracená GoPro a velké dobrodružství</h2>
-        <p>Rok 2022 nás zavedl na řeku <strong>Otavu</strong>. Naší základnou se stal krásný kemp <strong>Otavský ráj v Katovicích</strong>, kde jsme od <strong>21. do 24. července 2022</strong> vybudovali naše malé stanové městečko.</p>
-        <p>Stejně jako v předchozích letech jsme vyrazili stylově – <strong>soukromým autobusem přímo z naší ulice</strong>. Už samotná cesta byla plná smíchu, dobré nálady a očekávání, co nám letošní plavba přinese.</p>
-        
-        <h3>🚣 Den první – Sušice a cesta do Horažďovic</h3>
-        <p>V pátek jsme se autobusem přesunuli do <strong>Sušice</strong>, kde jsme si v půjčovně <strong>SAMBA</strong> vyzvedli naše již oblíbené rafty. Poté jsme se vydali po proudu řeky směrem k <strong>Horažďovicím</strong>, kde už na nás večer čekal náš autobus a odvezl nás zpět do kempu.</p>
-        
-        <h3>💪 Spartakiádní vložka</h3>
-        <p>Sobotní ráno začalo netradičně. Mužská část výpravy předvedla menší spartakiádní vystoupení, které pobavilo nejen přítomné, ale nejspíš i všechny kolemjdoucí. Poté jsme se autobusem přesunuli zpět do Horažďovic, kde na nás čekaly zaparkované lodě, a vydali jsme se po řece směrem k našemu stanovému městečku v Katovicích.</p>
-        
-        <h3>📷 Nehoda roku</h3>
-        <p>Bohužel právě během této plavby došlo k jedné nezapomenutelné události. Při tradičním pleskání pádlem o vodu se moje <strong>GoPro poroučela ke dnu řeky</strong> a už ji nikdo nikdy nespatřil. Spolu s ní zmizela i velká část fotek a videí z celé akce.</p>
-        
-        <div class="fun-fact">
-            <h3>🕯️ Legenda roku 2022</h3>
-            <p>Na dně řeky Otavy dodnes odpočívá jedna statečná kamera <strong>GoPro</strong>, která obětovala svůj život pro vodáckou zábavu.</p>
-            <p><em>Čest její památce. 🌊📷</em></p>
-        </div>
-        
-        <h3>🌞 Poslední den</h3>
-        <p>V neděli jsme vstali, sbalili stany, naložili bagáž do autobusu a vydali se na poslední etapu plavby z <strong>Katovic do vodáckého kempu Slaník</strong>, kde už na nás čekal náš věrný autobus. Počasí nám opět vyšlo na jedničku a plní zážitků, dojmů a nových vzpomínek jsme se vrátili zpět do naší ulice.</p>
-        
-        <p style="text-align:center;font-size:1.2em;"><strong>I když nám Otava vzala GoPro, vzpomínky nám naštěstí vzít nedokázala. 🚣🍺☀️</strong></p>
-    </div>
-
-    <div class="mapa"><img src="fotky/2022/mapa.png" alt="Mapa plavby"></div>
-
-    <div class="stats-container">
-        <div class="stat-card"><span class="value">4</span><div class="label">Dny na vodě</div></div>
-        <div class="stat-card"><span class="value">50+</span><div class="label">Ujetých km</div></div>
-        <div class="stat-card"><span class="value">1</span><div class="label">Autobus</div></div>
-        <div class="stat-card"><span class="value">X</span><div class="label">Sudů</div></div>
+        <h2>🌊 Berounka 2022</h2>
+        <p>Text o roce 2022...</p>
     </div>
 
     <div class="galerie" id="galerie"></div>
@@ -105,28 +66,49 @@
 
 <script>
     const galerie = document.getElementById('galerie');
-    const media = []; 
-    const videoNumbers = [9, 51, 52, 53, 54, 55, 56, 57, 58];
-    for(let i = 1; i <= 58; i++){
-        if (i === 39) continue;
+    const media = [];
+    // SEM DOPLŇ ČÍSLA SOUBORŮ, KTERÁ JSOU VIDEA, NAPŘ. [5, 10]
+    const videoNumbers = []; 
+    
+    // NASTAV POČET FOTEK (i<=X)
+    for(let i=1; i<=20; i++){
         const isVideo = videoNumbers.includes(i);
         const src = `fotky/2022/${i}.${isVideo ? 'mp4' : 'jpeg'}`;
         media.push({ type: isVideo ? 'video' : 'image', src: src });
-        if (isVideo) {
-            const v = document.createElement('video'); v.src = src; v.muted = true; v.loop = true; v.playsInline = true;
+        
+        if(isVideo){
+            const v = document.createElement('video');
+            v.src = src; v.muted = true; v.loop = true; v.playsInline = true;
             v.onmouseenter = () => v.play(); v.onmouseleave = () => { v.pause(); v.currentTime = 0; };
-            v.onclick = () => openLightbox(media.length - 1); galerie.appendChild(v);
+            v.onclick = (function(index) { return function() { openLightbox(index); } })(media.length-1);
+            galerie.appendChild(v);
         } else {
-            const img = document.createElement('img'); img.src = src; img.onclick = () => openLightbox(media.length - 1); galerie.appendChild(img);
+            const img = document.createElement('img');
+            img.src = src;
+            img.onclick = (function(index) { return function() { openLightbox(index); } })(media.length-1);
+            galerie.appendChild(img);
         }
     }
-    function openLightbox(i) {
+
+    function openLightbox(i){
         document.getElementById("lightbox").style.display = "flex";
         const m = media[i];
-        if(m.type === 'video') { document.getElementById("lightbox-video").src = m.src; document.getElementById("lightbox-video").style.display = 'block'; document.getElementById("lightbox-video").play(); }
-        else { document.getElementById("lightbox-img").src = m.src; document.getElementById("lightbox-img").style.display = 'block'; }
+        const v = document.getElementById("lightbox-video");
+        const img = document.getElementById("lightbox-img");
+        
+        if(m.type === 'video'){
+            img.style.display = 'none';
+            v.src = m.src; v.style.display = 'block'; v.play();
+        } else {
+            v.style.display = 'none'; v.pause();
+            img.src = m.src; img.style.display = 'block';
+        }
     }
-    function closePhoto() { document.getElementById("lightbox").style.display = "none"; document.getElementById("lightbox-video").pause(); document.getElementById("lightbox-video").style.display = 'none'; document.getElementById("lightbox-img").style.display = 'none'; }
+    function closePhoto(){
+        document.getElementById("lightbox").style.display = "none";
+        const v = document.getElementById("lightbox-video"); v.pause(); v.style.display = 'none';
+        const img = document.getElementById("lightbox-img"); img.style.display = 'none';
+    }
 </script>
 
 </body>
