@@ -148,42 +148,31 @@ footer{
 .prev{ left:20px; }
 .next{ right:20px; }
 
-/* --- OPRAVENÝ VODOZNAK: PROTI STRACENÍ V ČERNÉM POZADÍ --- */
+/* --- ČISTÝ TEXTOVÝ VODOZNAK --- */
 .watermark {
     position: absolute;
     text-align: center;
     pointer-events: none;
-    z-index: 99999; /* Pojistka, aby byl vždy navrchu před fotkou */
+    z-index: 99999;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.9)); /* Stín pro čitelnost na světlém podkladu */
-}
-
-.watermark img {
-    width: 120px;
-    height: auto;
-    /* KOUZLO: Invertuje černobílé logo na bíločerné a 'screen' smaže černou. Výsledkem je čistě bílá lama! */
-    filter: invert(1);
-    mix-blend-mode: screen;
 }
 
 .watermark .river-title {
     color: white; 
-    font-size: 16px;
+    font-size: 22px;
     font-weight: bold;
-    letter-spacing: 3px;
-    margin-top: 5px;
+    letter-spacing: 4px;
     font-family: Arial, sans-serif;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.9));
 }
 
 @media (max-width:700px){
     header h1{ font-size:36px; }
     .close, .prev, .next{ font-size:40px; }
-    .watermark img { width: 80px; }
-    .watermark .river-title { font-size: 12px; letter-spacing: 1px; }
+    .watermark .river-title { font-size: 15px; letter-spacing: 2px; }
 }
 </style>
 </head>
@@ -249,6 +238,7 @@ a ještě větší porci zábavy, smíchu a nezapomenutelných momentů.
 🚣 Vltava 2021 • 🚌 Vlastní autobus • 🍺 Výčep • 🏕️ Zlatá Koruna
 </footer>
 
+<!-- Lightbox struktura -->
 <div id="lightbox" class="lightbox">
     <span class="close" onclick="closePhoto()">✕</span>
     <span class="prev" onclick="changePhoto(-1)">❮</span>
@@ -257,8 +247,8 @@ a ještě větší porci zábavy, smíchu a nezapomenutelných momentů.
         <img id="lightbox-img" alt="Fotka">
         <video id="lightbox-video" controls style="display:none;"></video>
 
+        <!-- Pouze čistý textový vodoznak -->
         <div id="watermark" class="watermark">
-            <img src="web_images/logo-lama.png" alt="T-Lama z Podmezí">
             <div class="river-title">VLTAVA 2021</div>
         </div>
     </div>
