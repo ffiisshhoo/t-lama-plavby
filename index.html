@@ -12,23 +12,24 @@
         
         .weather-widget { position: fixed; top: 10px; left: 10px; z-index: 1000; width: 200px; background: var(--card-bg); padding: 10px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        .header { text-align: center; margin: 40px 0; }
+        .header { display: flex; align-items: center; justify-content: center; gap: 40px; margin: 40px 0; text-align: center; }
+        .side-logo { width: 120px; }
         h1 { font-size: 70px; color: var(--accent); margin: 0; }
         .podnadpis { font-size: 28px; color: var(--subtext); font-weight: bold; }
-        .info-text { font-size: 18px; color: var(--subtext); margin-top: 10px; font-style: italic; max-width: 500px; }
+        .info-text { font-size: 18px; color: var(--subtext); margin-top: 10px; font-style: italic; }
 
-        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; width: 90%; margin-bottom: 50px; }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; width: 90%; margin-bottom: 50px; }
         
         .rok-card { background: var(--card-bg); padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid transparent; transition: 0.3s; }
         .rok-card:hover { transform: translateY(-5px); border-color: var(--accent); }
         .rok-card a { font-size: 22px; font-weight: bold; color: var(--text); text-decoration: none; display: block; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
 
         .theme-switch { position: fixed; bottom: 30px; right: 30px; background: var(--accent); padding: 15px; border-radius: 50%; cursor: pointer; font-size: 24px; z-index: 1000; }
 
-        @media (max-width: 768px) { .weather-widget { position: relative; top: 0; left: 0; width: 90%; margin: 10px; } }
+        @media (max-width: 900px) { .header { flex-direction: column; gap: 10px; } .side-logo { display: none; } }
     </style>
 </head>
 <body>
@@ -40,17 +41,22 @@
 <div class="theme-switch" id="themeBtn" onclick="toggleTheme()">🌙</div>
 
 <div class="header">
-    <img src="web_images/tlama.png" alt="T-Lama Logo" style="width: 150px; margin-bottom: 15px;">
-    <h1>🦙 T-Lama</h1>
-    <div class="podnadpis">z Podmezí</div>
-    <p class="info-text">Parta přátel z jedné ulice a blízkého okolí, co každý rok spolu vyráží na vodu.</p>
+    <img src="web_images/tlama.png" alt="Logo vlevo" class="side-logo">
+    <div>
+        <h1>🦙 T-Lama</h1>
+        <div class="podnadpis">z Podmezí</div>
+        <p class="info-text">Parta přátel z jedné ulice a blízkého okolí, co každý rok spolu vyráží na vodu.</p>
+    </div>
+    <img src="web_images/tlama.png" alt="Logo vpravo" class="side-logo">
 </div>
 
 <div class="container">
+    <!-- Nástroje -->
     <div class="rok-card"><a href="https://www.vodackanavigace.cz/" target="_blank">🛶 Vodácká navigace</a></div>
     <div class="rok-card"><a href="https://www.chmi.cz/" target="_blank">☀️ Předpověď počasí</a></div>
     <div class="rok-card"><a href="https://www.raft.cz/sjezdnost.aspx" target="_blank">🌊 Sjízdnost řek (Raft.cz)</a></div>
 
+    <!-- Tabulka -->
     <div class="rok-card" style="grid-column: 1 / -1; cursor: default;">
         <h3>Stav našich oblíbených toků</h3>
         <table>
@@ -62,6 +68,7 @@
         </table>
     </div>
 
+    <!-- Roky -->
     <div class="rok-card"><a href="2020.html">2020 – Berounka</a></div>
     <div class="rok-card"><a href="2021.html">2021 – Vltava</a></div>
     <div class="rok-card"><a href="2022.html">2022 – Otava</a></div>
