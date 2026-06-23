@@ -1,173 +1,88 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>T-Lama z Podmezí</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Lama z Podmezí</title>
+    <style>
+        :root { --bg: #f0f7f4; --card-bg: #ffffff; --accent: #d85f98; --text: #333; --subtext: #6a513a; }
+        [data-theme="dark"] { --bg: #121e24; --card-bg: #1a2a32; --accent: #ff9f1c; --text: #e0e7e9; --subtext: #a0b4c0; }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    min-height: 100vh;
-}
+        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--bg); color: var(--text); transition: 0.4s; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        /* Widget počasí vlevo nahoře */
+        .weather-widget { position: fixed; top: 10px; left: 10px; z-index: 1000; width: 200px; background: var(--card-bg); padding: 10px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-.nadpis {
-    text-align: center;
-    font-size: 70px;
-    color: #d85f98;
-    margin-top: 30px;
-    margin-bottom: 0;
-}
+        .header { text-align: center; margin: 40px 0; }
+        h1 { font-size: 70px; color: var(--accent); margin: 0; }
+        .podnadpis { font-size: 28px; color: var(--subtext); font-weight: bold; }
 
-.podnadpis {
-    text-align: center;
-    font-size: 36px;
-    color: #6a513a;
-    margin-bottom: 40px;
-    font-weight: bold;
-}
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; width: 90%; margin-bottom: 50px; }
+        
+        .rok-card { background: var(--card-bg); padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid transparent; transition: 0.3s; }
+        .rok-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .rok-card a { font-size: 22px; font-weight: bold; color: var(--text); text-decoration: none; display: block; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
 
-.obsah {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    padding: 20px;
-}
+        .theme-switch { position: fixed; bottom: 30px; right: 30px; background: var(--accent); padding: 15px; border-radius: 50%; cursor: pointer; font-size: 24px; z-index: 1000; }
 
-.logo {
-    width: 300px;
-    max-width: 25vw;
-    opacity: 0.9;
-}
-
-.logo-mobile {
-    display: none;
-}
-
-.card {
-    background: white;
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    text-align: center;
-    min-width: 350px;
-}
-
-.card h2 {
-    color: #6a513a;
-    margin-top: 0;
-    font-size: 36px;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-li {
-    margin: 18px 0;
-    font-size: 30px;
-}
-
-a {
-    text-decoration: none;
-    color: #333;
-    transition: 0.3s;
-}
-
-a:hover {
-    color: #d85f98;
-}
-
-.footer {
-    text-align: center;
-    color: #777;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-size: 18px;
-}
-
-/* MOBIL */
-@media (max-width: 900px) {
-
-    .nadpis {
-        font-size: 50px;
-        padding: 0 10px;
-    }
-
-    .podnadpis {
-        font-size: 28px;
-        margin-bottom: 25px;
-    }
-
-    .obsah {
-        display: block;
-        padding: 15px;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    .logo-mobile {
-        display: block;
-        width: 280px;
-        max-width: 80%;
-        margin: 35px auto;
-    }
-
-    .card {
-        min-width: auto;
-        padding: 25px;
-    }
-
-    .card h2 {
-        font-size: 28px;
-    }
-
-    li {
-        font-size: 26px;
-    }
-}
-</style>
+        @media (max-width: 768px) { .weather-widget { position: relative; top: 0; left: 0; width: 90%; margin: 10px; } }
+    </style>
 </head>
-
 <body>
 
-<h1 class="nadpis">🦙 T-Lama</h1>
-<div class="podnadpis">z Podmezí</div>
+<!-- Počasí widget -->
+<div class="weather-widget">
+    <script type="text/javascript" src="https://www.in-pocasi.cz/widget/widget.php?typ=1&mesto=plzen"></script>
+</div>
 
-<div class="obsah">
+<div class="theme-switch" id="themeBtn" onclick="toggleTheme()">🌙</div>
 
-    <img class="logo" src="web_images/tlama.png" alt="T-Lama">
+<div class="header">
+    <h1>🦙 T-Lama</h1>
+    <div class="podnadpis">z Podmezí</div>
+</div>
 
-    <div class="card">
-        <h2>🛶 Kde všude už jsme pluli</h2>
+<div class="container">
+    <!-- Praktické odkazy -->
+    <div class="rok-card"><a href="https://www.vodackanavigace.cz/" target="_blank">🛶 Vodácká navigace</a></div>
+    <div class="rok-card"><a href="https://www.chmi.cz/" target="_blank">☀️ Předpověď počasí</a></div>
 
-        <ul>
-            <li><a href="2020.html">2020 – Berounka</a></li>
-            <li><a href="2021.html">2021 – Vltava</a></li>
-            <li><a href="2022.html">2022 – Otava</a></li>
-            <li><a href="2023.html">2023 – Berounka</a></li>
-            <li><a href="2024.html">2024 – Ohře</a></li>
-            <li><a href="2025.html">2025 – Ohře</a></li>
-            <li><a href="2026.html">2026 – Vltava</a></li>
-        </ul>
+    <!-- Tabulka stavů -->
+    <div class="rok-card" style="grid-column: 1 / -1; cursor: default;">
+        <h3>Stav našich oblíbených toků</h3>
+        <table>
+            <tr><th>Řeka</th><th>Stav</th></tr>
+            <tr><td>Vltava</td><td style="color: green;">✔ Sjízdná</td></tr>
+            <tr><td>Berounka</td><td style="color: green;">✔ Sjízdná</td></tr>
+            <tr><td>Ohře</td><td style="color: orange;">⚠ Omezený průtok</td></tr>
+        </table>
     </div>
 
-    <img class="logo" src="web_images/tlama.png" alt="T-Lama">
-
+    <!-- Historie plaveb -->
+    <div class="rok-card"><a href="2020.html">2020 – Berounka</a></div>
+    <div class="rok-card"><a href="2021.html">2021 – Vltava</a></div>
+    <div class="rok-card"><a href="2022.html">2022 – Otava</a></div>
+    <div class="rok-card"><a href="2023.html">2023 – Berounka</a></div>
+    <div class="rok-card"><a href="2024.html">2024 – Ohře</a></div>
+    <div class="rok-card"><a href="2025.html">2025 – Ohře</a></div>
+    <div class="rok-card"><a href="2026.html">2026 – Vltava</a></div>
 </div>
 
-<img class="logo-mobile" src="web_images/tlama.png" alt="T-Lama">
-
-<div class="footer">
-    ❤️ Každý rok spolu na vodě ❤️
-</div>
+<script>
+    function toggleTheme() {
+        const d = document.documentElement;
+        if (d.getAttribute("data-theme") === "dark") {
+            d.removeAttribute("data-theme");
+            document.getElementById("themeBtn").innerHTML = "🌙";
+        } else {
+            d.setAttribute("data-theme", "dark");
+            document.getElementById("themeBtn").innerHTML = "☀️";
+        }
+    }
+</script>
 
 </body>
 </html>
