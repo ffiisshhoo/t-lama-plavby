@@ -6,7 +6,7 @@
     <title>Ohře 2024 – Návrat na západ</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f2f2f2; color: #333; line-height: 1.7; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #f2f2f2; color: #333; line-height: 1.7; }
 
         /* Navigace */
         .nav-bar { position: sticky; top: 0; z-index: 900; background: rgba(255, 255, 255, 0.95); padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
@@ -14,28 +14,40 @@
         .btn:hover { background: #0b4f6c; }
 
         header { background: linear-gradient(135deg, #0b4f6c, #1b7fbd); color: white; text-align: center; padding: 60px 20px; }
-        header h1 { margin: 0; font-size: 3rem; }
-        
-        .container { max-width: 1000px; margin: auto; padding: 20px; }
-        .card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
+        header h1 { margin: 0; font-size: 3.5rem; }
+        header p { font-size: 1.4rem; margin-top: 15px; }
+
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        .card { background: white; border-radius: 20px; padding: 35px; margin-bottom: 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h2 { color: #0b4f6c; margin-top: 0; }
+        a { color: #1b7fbd; }
+
+        blockquote { background: #eef8ff; border-left: 5px solid #1b7fbd; margin: 30px 0; padding: 20px; border-radius: 10px; font-style: italic; }
+        .mapa { width: 100%; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .posadky { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .posadka { background: #f7f7f7; padding: 25px; border-radius: 15px; }
+        .posadka h3 { color: #1b7fbd; margin-top: 0; }
+
+        /* Galerie */
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: 0.3s; }
-        .gallery img:hover { transform: scale(1.05); }
+        .gallery img { width: 100%; height: 160px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); cursor: pointer; transition: 0.3s; }
+        .gallery img:hover { transform: scale(1.03); }
 
         /* Lightbox */
         .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         .lightbox.active { display: flex; }
-        .lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+        .lightbox img { max-width: 90%; max-height: 80%; border-radius: 15px; }
         .nav-btn { position: absolute; color: white; font-size: 3rem; cursor: pointer; padding: 20px; user-select: none; }
         .prev { left: 10px; }
-        .next { right: 30px; }
+        .next { right: 10px; }
+
+        footer { background: #0b4f6c; color: white; text-align: center; padding: 35px; margin-top: 50px; }
     </style>
 </head>
 <body>
 
 <nav class="nav-bar">
-    <a href="index.html" class="btn">← Zpět na přehled</a>
+    <a href="index.html" class="btn">⬅ Zpět na přehled</a>
     <strong>Ohře 2024</strong>
 </nav>
 
@@ -47,14 +59,39 @@
 <div class="container">
     <div class="card">
         <h2>12.–14. července 2024</h2>
-        <p>Letos jsme se rozhodli vyzkoušet další krásnou řeku a to Ohři...</p>
+        <p>Letos jsme se rozhodli vyzkoušet další krásnou řeku a to Ohři. Po společné dohodě jsme si udělali pouze víkendovou akci od pátku 12. července do neděle 14. července 2024.</p>
+        <p>Kemp jsme pečlivě vybírali a nakonec jsme skončili v <a href="https://naspici.net/" target="_blank">Kempu Na Špici</a>.</p>
+        <p>V pátek po práci jsme vyrazili směr Karlovarský kraj a naše tábořiště. Přesně při příjezdu do kempu jsme ani nestihli vystoupit z auta a přišla pořádná bouřka. Tak jsme si dali skoro půl hodinky pauzu v autech. Naštěstí se poté znovu ukázalo sluníčko a my mohli začít stavět stany.</p>
+        <p>Poté jsme se vydali do místní restaurace na večeři. Mnozí z nás byli nadšeni, protože v menu nalezli retro klasiku – <strong>kuřecí plátek s broskví a sýrem.</strong> Po večeři jsme ještě chviličku poseděli a šli na kutě.</p>
+        <p>Ráno nás čekal přesun dvěma auty do Karlových Varů, odkud jsme vypluli zpátky do našeho kempu. Všech pět našich plastových AGARů krásně kopírovalo tok řeky a hlavně – Ohře je opravdu nádherná řeka. Jezy, peřeje, úsek Hubertus… prostě pecka.</p>
+        <p>Cestou se dokonce jedna posádka pěkně vykoupala a někomu se utopilo naše epesní modré tričko.</p>
+        <blockquote>Háček musí hlásit… a když nevidí kameny, je to špatné!</blockquote>
+        <p>V pozdním odpoledni jsme dopluli zpět do kempu, kde jsme vyzkoušeli další nabídku jídel z místní restaurace, něco popili a domluvili se, že v neděli před cestou domů zajedeme na hrad Loket.</p>
+        <p>No a neděle? Jako každý rok – pobalit, všechno naskládat do aut a hurá na hrad. Když jsme Loket viděli zezhora, bylo rozhodnuto: <blockquote>Příští rok jedeme zase na Ohři!</blockquote></p>
+    </div>
+
+    <div class="card">
+        <h2>Mapa výpravy</h2>
+        <img src="fotky/2024/mapa2024.png" alt="Mapa Ohře 2024" class="mapa">
+        <p><strong>Sobota:</strong> Karlovy Vary → Kemp Na Špici 🚣‍♂️<br><strong>Neděle:</strong> Kemp Na Špici → Hrad Loket 🚗</p>
+    </div>
+
+    <div class="card">
+        <h2>Naše posádky</h2>
+        <div class="posadky">
+            <div class="posadka"><h3>Háčkové</h3>Adélka<br>Evelínka<br>Laura<br>Anabelka<br>Týnka</div>
+            <div class="posadka"><h3>Kapitáni</h3>Peťa<br>Tomík<br>Janina<br>Ondra<br>Moni</div>
+            <div class="posadka"><h3>Speciální člen výpravy</h3>A za to všechno se vezla Brigy 😊</div>
         </div>
+    </div>
 
     <div class="card">
         <h2>Fotogalerie</h2>
         <div class="gallery" id="galerie2024"></div>
     </div>
 </div>
+
+<footer>🚣‍♂️ T-LAMA TEAM • Ohře 2024 – Návrat na západ 🌊</footer>
 
 <div class="lightbox" id="lightbox">
     <span class="nav-btn prev" onclick="changeImage(-1)">❮</span>
@@ -69,10 +106,33 @@
     let currentIndex = 1;
     const totalPhotos = 49;
 
-    // Generování galerie
     for (let i = 1; i <= totalPhotos; i++) {
         const img = document.createElement('img');
         img.src = `fotky/2024/${i}.jpeg`;
-        img.loading = "lazy"; // Rychlejší načítání
+        img.loading = "lazy";
         img.onclick = () => { currentIndex = i; showLightbox(i); };
-        galerie.appendChild(img
+        galerie.appendChild(img);
+    }
+
+    function showLightbox(index) {
+        lightboxImg.src = `fotky/2024/${index}.jpeg`;
+        lightbox.classList.add('active');
+    }
+
+    function changeImage(step) {
+        currentIndex += step;
+        if (currentIndex > totalPhotos) currentIndex = 1;
+        if (currentIndex < 1) currentIndex = totalPhotos;
+        showLightbox(currentIndex);
+    }
+
+    lightbox.onclick = (e) => { if(e.target === lightboxImg) return; lightbox.classList.remove('active'); };
+    document.onkeydown = (e) => {
+        if(!lightbox.classList.contains('active')) return;
+        if(e.key === "ArrowRight") changeImage(1);
+        if(e.key === "ArrowLeft") changeImage(-1);
+        if(e.key === "Escape") lightbox.classList.remove('active');
+    };
+</script>
+</body>
+</html>
