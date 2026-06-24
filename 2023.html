@@ -20,8 +20,9 @@
         
         /* Galerie */
         .galerie { column-count: 4; column-gap: 15px; margin-top: 40px; }
-        .img-wrapper { position: relative; display: block; margin-bottom: 15px; cursor: pointer; border-radius: 12px; overflow: hidden; }
-        .img-wrapper img { width: 100%; display: block; transition: 0.5s; }
+        .img-wrapper { position: relative; display: block; margin-bottom: 15px; cursor: pointer; border-radius: 12px; overflow: hidden; background: #ddd; }
+        .img-wrapper img, .img-wrapper video { width: 100%; display: block; transition: 0.5s; }
+        .video-wrapper::after { content: "▶"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 30px; color: white; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 20px; pointer-events: none; }
         
         /* Lightbox */
         .lightbox { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; }
@@ -40,13 +41,12 @@
 
     <div class="box">
         <h2>🌊 Berounka 2023 – první plastové kánoe a velké plány</h2>
-        <p>Rok 2023 přinesl několik změn a naše parta se trochu zmenšila. O to větší jsme ale měli chuť znovu vyrazit na vodu. Tentokrát už opravdu i s dětmi. Gumové rafty jsme vyměnili za 5 plastových kánoí a poprvé jsme se rozdělili – každý dospělý dostal do své kánoe jednoho malého námořníka. Volba byla jasná – Berounka.</p>
+        <p>Rok 2023 přinesl několik změn a naše parta se trochu zmenšila. O to větší jsme ale měli chuť znovu vyrazit na vodu. Tentokrát už opravdu i s dětmi. Gumové rafty jsme vyměnili za 5 plastových kánoí a poprvé jsme se rozdělili – každý dospělý dostal do své kánoe jednoho malého námořníka.</p>
         <p>Ve dnech <strong>20.–23. července 2023</strong> jsme tedy opět vyrazili. Ve čtvrtek jsme naložili naše motorizovaná autíčka a přesunuli se do Liblína.</p>
         <h3>🚣 Den první – Dolanský most a velké plány</h3>
-        <p>V pátek ráno jsme se nechali odvést k Dolanskému mostu, kde jsme plní sil usedli do zapůjčených 5 plastových kánoí. Plán byl doplout až do Kobylky, ale naše odhodlání bylo o něco větší než naše fyzička.</p>
+        <p>V pátek ráno jsme se nechali odvést k Dolansému mostu, kde jsme plní sil usedli do zapůjčených 5 plastových kánoí. Plán byl doplout až do Kobylky, ale naše odhodlání bylo o něco větší než naše fyzička.</p>
         <h3>🛟 Záchrana u Žíkovského mlýna</h3>
         <p>U jezu Žíkovský mlýn nás potkalo vysvobození. Majitel půjčovny H2O SPORT Sikyta se nad námi slitoval, naložil nás i s kánoemi a odvezl zpět do Kobylky. Tam sklidil od místních lehký posměch. 😄</p>
-        <p><strong>Možná nás bylo o pár méně, možná jsme nedopluli tak daleko, ale o zážitky, smích a společné chvíle rozhodně nouze nebyla. ❤️🚣‍♂️🌊</strong></p>
     </div>
 
     <div class="map-wrapper">
@@ -68,17 +68,28 @@
 </div>
 
 <script>
-    // Seznam médií (přidej sem cesty k videím, pokud je máš)
-    const media = [];
-    for(let i=1; i<=20; i++){
+    // ZDE SI UPRAV SEZNAM SOUBORŮ
+    const media = [
+        { type: 'image', src: 'fotky/2023/1.jpeg' },
+        { type: 'video', src: 'fotky/2023/video1.mp4' } // Příkaz pro video
+    ];
+
+    // Automatické doplnění obrázků 2-19 (pokud je máš)
+    for(let i=2; i<=19; i++) {
         media.push({ type: 'image', src: `fotky/2023/${i}.jpeg` });
     }
 
     const galerie = document.getElementById('galerie');
     media.forEach((m, index) => {
         const wrapper = document.createElement('div');
-        wrapper.className = 'img-wrapper';
-        wrapper.innerHTML = `<img src="${m.src}">`;
+        wrapper.className = 'img-wrapper' + (m.type === 'video' ? ' video-wrapper' : '');
+        
+        if(m.type === 'video') {
+            wrapper.innerHTML = `<video src="${m.src}" muted></video>`;
+        } else {
+            wrapper.innerHTML = `<img src="${m.src}">`;
+        }
+        
         wrapper.onclick = () => openLightbox(index);
         galerie.appendChild(wrapper);
     });
@@ -102,7 +113,10 @@
         document.getElementById('lightbox').style.display = 'flex';
     }
 
-    function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+    function closeLightbox() { 
+        document.getElementById('lightbox').style.display = 'none';
+        document.getElementById('media-container').innerHTML = ''; // Zastaví přehrávání
+    }
 </script>
 </body>
 </html>
