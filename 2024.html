@@ -10,43 +10,39 @@
 
         /* Navigace */
         .nav-bar { position: sticky; top: 0; z-index: 900; background: rgba(255, 255, 255, 0.98); padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #27ae60; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .btn { background: linear-gradient(45deg, #2980b9, #27ae60); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.4s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .btn { background: linear-gradient(45deg, #2980b9, #27ae60); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.4s; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
 
-        header { background: linear-gradient(135deg, #1e3c72, #2a5298, #27ae60); color: white; text-align: center; padding: 80px 20px; }
-        header h1 { margin: 0; font-size: 4rem; letter-spacing: -1px; text-shadow: 3px 3px 10px rgba(0,0,0,0.3); }
-        
+        header { background: linear-gradient(135deg, #1e3c72, #2a5298, #27ae60); color: white; text-align: center; padding: 60px 20px; }
         .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
-        .card { background: white; border-radius: 25px; padding: 40px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.4s; border: 1px solid #d1fae5; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .card { background: white; border-radius: 25px; padding: 40px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #d1fae5; transition: 0.4s; }
+        .card:hover { transform: translateY(-5px); }
         
-        h2 { color: #2980b9; font-size: 2rem; }
-        blockquote { background: #f0fdf4; border-left: 6px solid #27ae60; margin: 30px 0; padding: 25px; border-radius: 0 15px 15px 0; font-style: italic; color: #166534; font-size: 1.2rem; }
+        h2 { color: #2980b9; }
+        .mapa { width: 100%; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); margin-top: 20px; }
+        blockquote { background: #f0fdf4; border-left: 6px solid #27ae60; margin: 30px 0; padding: 25px; border-radius: 0 15px 15px 0; font-style: italic; color: #166534; }
 
         /* Galerie */
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-        .gallery img { width: 100%; height: 180px; object-fit: cover; border-radius: 20px; cursor: pointer; transition: 0.5s; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .gallery img:hover { transform: scale(1.08) rotate(1deg); border-color: #27ae60; box-shadow: 0 10px 25px rgba(39,174,96,0.3); }
+        .gallery img { width: 100%; height: 180px; object-fit: cover; border-radius: 20px; cursor: pointer; transition: 0.5s; border: 3px solid white; }
+        .gallery img:hover { transform: scale(1.05) rotate(1deg); border-color: #27ae60; }
 
         /* Lightbox */
-        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
         .lightbox.active { display: flex; }
-        .lightbox img { max-width: 85%; max-height: 80%; border-radius: 15px; border: 4px solid white; }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
+        .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 15px; border: 4px solid white; display: block; }
+        .watermark { position: absolute; bottom: 15px; right: 15px; color: rgba(255,255,255,0.6); font-weight: bold; font-size: 1.2rem; pointer-events: none; }
         
-        .watermark { position: absolute; bottom: 30px; right: 30px; color: rgba(255,255,255,0.4); font-size: 2rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; pointer-events: none; text-shadow: 2px 2px 4px black; }
-        
-        .nav-btn { position: absolute; top: 50%; color: white; font-size: 4rem; cursor: pointer; padding: 20px; transition: 0.3s; }
-        .nav-btn:hover { color: #27ae60; transform: scale(1.2); }
-        .prev { left: 20px; }
-        .next { right: 20px; }
-
-        footer { background: #1a4731; color: #a7f3d0; text-align: center; padding: 40px; border-top: 5px solid #27ae60; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 4rem; cursor: pointer; padding: 20px; z-index: 1001; }
+        .prev { left: -60px; }
+        .next { right: -60px; }
     </style>
 </head>
 <body>
 
 <nav class="nav-bar">
-    <a href="index.html" class="btn">⬅ Zpět na základnu</a>
+    <a href="index.html" class="btn">⬅ Zpět</a>
     <strong>Ohře 2024: T-LAMA V AKCI</strong>
 </nav>
 
@@ -60,28 +56,30 @@
         <h2>12.–14. července 2024: Výprava, co nemá chybu!</h2>
         <p>Letos jsme se rozhodli, že potřebujeme pořádný restart, a tak volba padla na Ohři. 🌊 Víkendová mise (12.–14. července) mohla začít!</p>
         <p>Základnu jsme rozbili v legendárním <a href="https://naspici.net/" target="_blank">Kempu Na Špici</a>. Hned po příjezdu nás přivítala "osvěžující" bouřka, tak jsme si dali půl hodinky povinného networkingu v autech. ⛈️</p>
-        <p>Večerní menu v místní restauraci? Absolutní vítěz byl jasný – retro klasika: <strong>kuřecí plátek s broskví a sýrem!</strong> Gastronomický zážitek, na který se nezapomíná. 🍑🧀</p>
+        <p>Večerní menu? Absolutní vítěz byl jasný – retro klasika: <strong>kuřecí plátek s broskví a sýrem!</strong> Gastronomický zážitek, na který se nezapomíná. 🍑🧀</p>
         <p>Ráno jsme vyrazili do Varů a na našich pěti plastových AGARech jsme pokořili řeku. Ohře je prostě pecka – peřeje, jezy, Hubertus... prostě řeka, která nás baví! 🛶</p>
-        <p>Samozřejmě nesměla chybět trocha dramatu: jedna posádka se rozhodla pro nedobrovolnou koupel a jedno epesní modré tričko se rozhodlo, že se raději vydá na cestu k moři samo. 👕🌊</p>
         <blockquote>Háček musí hlásit… a když nevidí kameny, je to špatné! (Příště si vezmeme lepší brýle!)</blockquote>
         <p>Neděle? Pobalili jsme, naskládali věci do aut a vyrazili na hrad Loket. Když jsme stáli na hradbách a koukali dolů, bylo jasno: <blockquote>Příští rok jedeme na Ohři znovu! T-LAMA style! 🦙</blockquote></p>
     </div>
 
     <div class="card">
-        <h2>Galerie našich hrdinů</h2>
+        <h2>Mapa výpravy</h2>
+        <img src="fotky/2024/mapa2024.png" alt="Mapa Ohře 2024" class="mapa">
+    </div>
+
+    <div class="card">
+        <h2>Galerie</h2>
         <div class="gallery" id="galerie2024"></div>
     </div>
 </div>
 
-<footer>
-    <p>🦙 T-LAMA TEAM • Ohře 2024 – Návrat na západ 🌊</p>
-</footer>
-
 <div class="lightbox" id="lightbox">
-    <span class="nav-btn prev" onclick="changeImage(-1)">❮</span>
-    <img id="lightbox-img" src="" alt="Detail">
-    <div class="watermark">T-LAMA TEAM</div>
-    <span class="nav-btn next" onclick="changeImage(1)">❯</span>
+    <span class="nav-btn prev" onclick="changeImage(event, -1)">❮</span>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Detail">
+        <div class="watermark">© T-LAMA TEAM</div>
+    </div>
+    <span class="nav-btn next" onclick="changeImage(event, 1)">❯</span>
 </div>
 
 <script>
@@ -104,18 +102,22 @@
         lightbox.classList.add('active');
     }
 
-    function changeImage(step) {
+    function changeImage(e, step) {
+        if(e) e.stopPropagation();
         currentIndex += step;
         if (currentIndex > totalPhotos) currentIndex = 1;
         if (currentIndex < 1) currentIndex = totalPhotos;
         showLightbox(currentIndex);
     }
 
-    lightbox.onclick = (e) => { if(e.target === lightboxImg || e.target.classList.contains('nav-btn')) return; lightbox.classList.remove('active'); };
+    lightbox.onclick = (e) => { 
+        if(e.target === lightbox) lightbox.classList.remove('active'); 
+    };
+
     document.onkeydown = (e) => {
         if(!lightbox.classList.contains('active')) return;
-        if(e.key === "ArrowRight") changeImage(1);
-        if(e.key === "ArrowLeft") changeImage(-1);
+        if(e.key === "ArrowRight") changeImage(null, 1);
+        if(e.key === "ArrowLeft") changeImage(null, -1);
         if(e.key === "Escape") lightbox.classList.remove('active');
     };
 </script>
