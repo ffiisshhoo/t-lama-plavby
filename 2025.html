@@ -9,8 +9,8 @@
         html { scroll-behavior:smooth; }
         body { font-family:Arial,sans-serif; background:#f5f7fa; color:#333; line-height:1.7; }
         
-        /* TLAČÍTKO ZPĚT - VŽDY NAHOŘE */
-        .sticky-back { position:fixed; top:20px; left:20px; z-index:9999; background:#0b4f7d; color:white; padding:12px 25px; border-radius:10px; text-decoration:none; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3); font-size: 1.1rem; }
+        /* TLAČÍTKO ZPĚT - FIXNÍ NAHOŘE */
+        .sticky-back { position:fixed; top:20px; left:20px; z-index:9999; background:#0b4f7d; color:white; padding:12px 25px; border-radius:10px; text-decoration:none; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3); }
 
         .hero { background:linear-gradient(135deg,#0b4f7d,#1f7fc5,#42b0ff); color:white; text-align:center; padding:120px 20px; border-bottom:8px solid #ffd166; }
         .hero h1 { font-size:4rem; margin:20px 0; text-shadow:3px 3px 8px rgba(0,0,0,0.4); }
@@ -27,14 +27,15 @@
         .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
         .gallery img { width:100%; height:230px; object-fit:cover; border-radius:15px; cursor:pointer; }
         
-        /* LIGHTBOX */
+        /* LIGHTBOX - OPRAVENÝ VODOZNAK */
         .lightbox { display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; }
+        .lightbox-content { position:relative; display:flex; justify-content:center; align-items:center; width:100%; height:100%; }
         .lightbox img { max-width:85%; max-height:85%; border:5px solid white; border-radius:10px; }
         .btn-back-lb { position:fixed; top:20px; left:20px; color:white; cursor:pointer; font-weight:bold; background:rgba(0,0,0,0.5); padding:10px 20px; border-radius:8px; z-index:10001; }
         .nav-btn { position:absolute; top:50%; color:white; font-size:50px; cursor:pointer; padding:20px; user-select:none; }
         .prev { left:20px; }
         .next { right:20px; }
-        .watermark { position:absolute; bottom:20px; right:20px; color:rgba(255,255,255,0.4); font-size:1.2rem; }
+        .watermark { position:absolute; bottom:30px; right:30px; color:rgba(255,255,255,0.4); font-size:1.5rem; pointer-events:none; }
     </style>
 </head>
 <body>
@@ -54,7 +55,7 @@
 
     <section><div class="card"><h2>🚣 Sobota – Hubertus volá</h2><p>Po snídani na nás už čekaly dodávky směrem do Karlových Varů. Tam jsme se opět nalodili a věděli jsme, že nás čeká stejný úsek jako minulý rok. První zastávka? Samozřejmě hospůdka! Pivíčko, aperolek a hurá zpátky na vodu. 🍺🍹 Nejvíce jsme se ale těšili na Hubertus. Nejen kvůli místním peřejím, ale hlavně kvůli obědu v lese a oblíbenému stylu „ogriluj si sám“. Během odpolední pohodové plavby si naši tři nejstarší háčkové vyzkoušeli plavbu na kánoi úplně sami a dokázali, že z nich rostou opravdoví vodáci. 🚣‍♂️👏 Do kempu jsme dorazili plní krásných vzpomínek a nových zážitků.</p></div></section>
 
-    <section><div class="card"><h2>🚗 Neděle – čas vrátit se domů</h2><p>Na neděli už nebylo nic velkého naplánováno, a tak jsme se před odjezdem zašli podívat do Kyselky na Mattoniho pramen a samozřejmě ho i ochutnat. Poté jsme sbalili stany, rozloučili se s kempem a vyrazili směrem na Třemošnou. A co říct závěrem? Ohře je opravdu nádherná řeka. Opět nám nabídla krásnou přírodu, pohodovou plavbu, spoustu smíchu a další nezapomenutelné vzpomínky. 🌊⚓🦙</p></div></section>
+    <section><div class="card"><h2>🚗 Neděle – čas vrátit se domů</h2><p>Na neděli už nebylo nic velkého naplánováno, a tak jsme se před odjezdem zašli podívat do Kyselky na Mattoniho pramen a samozřejmě ho i ochutnat. Poté jsme sbalili stany, rozloučili se s kempem a vyrazili směrem na Třemošnou. A co říct závěrem? Ohře je opravdu nádherná řeka. Opět nám nabídla krásnou přírodu, pohodovou plavbu, spoustu smíchu a další nezapomenutelná vzpomínky. 🌊⚓🦙</p></div></section>
 
     <section><h2>🗺️ Trasa plavby</h2><img src="fotky/2025/mapa2025.png" class="map">
         <table><tr><th>Den</th><th>Trasa</th><th>Km</th></tr><tr><td>Pátek</td><td>Sokolov → Loket → Karlovy Vary</td><td>29 km</td></tr><tr><td>Sobota</td><td>Karlovy Vary → Radošov</td><td>15 km</td></tr><tr><td><strong>Celkem</strong></td><td></td><td><strong>44 km</strong></td></tr></table>
@@ -66,17 +67,16 @@
 <div class="lightbox" id="lightbox">
     <div class="btn-back-lb" onclick="closeLightbox()">← Zpět</div>
     <div class="nav-btn prev" onclick="changeImage(-1)">&#10094;</div>
-    <img id="lightbox-img">
+    <div class="lightbox-content">
+        <img id="lightbox-img">
+        <div class="watermark">Ohře 2025</div>
+    </div>
     <div class="nav-btn next" onclick="changeImage(1)">&#10095;</div>
-    <div class="watermark">Ohře 2025</div>
 </div>
 
 <script>
-    // Automaticky vygeneruje seznam čísel 1 až 58
     const fileNames = [];
-    for (let i = 1; i <= 58; i++) {
-        fileNames.push(i);
-    }
+    for (let i = 1; i <= 58; i++) { fileNames.push(i); }
 
     const gallery = document.getElementById('gallery');
     const lightbox = document.getElementById('lightbox');
