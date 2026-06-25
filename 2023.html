@@ -8,7 +8,7 @@
         :root { --header-bg: #2f6b3f; --card-shadow: 0 8px 25px rgba(0,0,0,0.15); }
         body { margin:0; font-family:'Segoe UI', sans-serif; background: linear-gradient(135deg, #e0f7fa, #f1f8e9); color: #333; }
         
-        /* Nový horní panel */
+        /* Horní panel - styl dle vzoru 2024 */
         .top-nav {
             position: sticky;
             top: 0;
@@ -54,4 +54,66 @@
 <div class="container">
     <div class="box">
         <h2>🌊 Berounka 2023 – první plastové kánoe a velké plány</h2>
-        <p>Rok 2023 přinesl několik
+        <p>Rok 2023 přinesl několik změn a naše parta se trochu zmenšila. O to větší jsme ale měli chuť znovu vyrazit na vodu. Tentokrát už opravdu i s dětmi. Gumové rafty jsme vyměnili za 5 plastových kánoí a poprvé jsme se rozdělili – každý dospělý (a někde i dva dospělí) dostal do své kánoe jednoho malého námořníka, který se občas proměnil v kapitána a určoval směr plavby. Volba byla jasná – Berounka, kterou máme doslova za kopečkem a která je pro rodinnou vodáckou výpravu jako stvořená.</p>
+        <p>Ve dnech 20.–23. července 2023 jsme tedy opět vyrazili na naši tradiční vodáckou výpravu. A protože jsme při první Berounce měli skvělé zázemí v <a href="https://www.kempkobylka.cz/" target="_blank">Kempu Kobylka</a>, nebyl důvod nic měnit.</p>
+        <h3>🚣 Den první – Dolanský most a velké plány</h3>
+        <p>V pátek ráno jsme se nechali odvést k Dolanskému mostu, kde jsme plní sil, odhodlání a nadšení usedli do zapůjčených 5 plastových kánoí. Plán byl jasný – doplout až do Kobylky. Jenže, jak se později ukázalo, naše odhodlání bylo o něco větší než naše fyzička.</p>
+        <h3>🛟 Záchrana u Žíkovského mlýna</h3>
+        <p>Naštěstí nás u jezu Žíkovský mlýn potkalo doslova vysvobození. Narazili jsme na majitele půjčovny <a href="https://www.h2osport.cz/" target="_blank">H2O SPORT Sikyta</a>, který nás i s kánoemi naložil a odvezl zpět do Kobylky.</p>
+        <h3>🚣 Druhý pokus</h3>
+        <p>V sobotu jsme znovu vypluli, tentokrát směrem ke <a href="https://www.kempupotucku.cz/" target="_blank">Kempu U Potůčku</a>. A tentokrát jsme byli připraveni i po technické stránce – nové GoPro už bylo k dispozici.</p>
+        <p><strong>Možná nás bylo o pár méně, možná jsme nedopluli tak daleko, jak jsme původně plánovali, ale o zážitky, smích a společné chvíle rozhodně nouze nebyla. A o tom naše plavby vždycky byly, jsou a snad ještě dlouho budou. ❤️🚣‍♂️🌊</strong></p>
+    </div>
+
+    <div class="map-wrapper">
+        <img src="fotky/2023/mapa.png" alt="Mapa plavby Berounka 2023">
+    </div>
+
+    <div class="galerie" id="galerie"></div>
+</div>
+
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">✕</span>
+    <div class="nav-btn prev" onclick="changeMedia(-1)">❮</div>
+    <div id="media-container" style="position:relative;"></div>
+    <div class="nav-btn next" onclick="changeMedia(1)">❯</div>
+</div>
+
+<script>
+    const media = [
+        {type: 'image', src: 'fotky/2023/b1.jpeg'},
+        {type: 'image', src: 'fotky/2023/b2.jpeg'},
+        {type: 'video', src: 'fotky/2023/b3.mp4'},
+        {type: 'image', src: 'fotky/2023/b4.jpeg'},
+        {type: 'image', src: 'fotky/2023/b5.jpeg'},
+        {type: 'image', src: 'fotky/2023/b6.jpeg'},
+        {type: 'image', src: 'fotky/2023/b7.jpeg'},
+        {type: 'image', src: 'fotky/2023/b8.jpeg'},
+        {type: 'video', src: 'fotky/2023/b9.mp4'}
+    ];
+
+    const gal = document.getElementById('galerie');
+    media.forEach((m, i) => {
+        const d = document.createElement('div');
+        d.className = 'img-wrapper';
+        d.innerHTML = m.type === 'video' ? `<video src="${m.src}"></video><div style="position:absolute; top:5px; right:5px; color:white;">▶</div>` : `<img src="${m.src}">`;
+        d.onclick = () => openLightbox(i);
+        gal.appendChild(d);
+    });
+
+    let curr = 0;
+    function openLightbox(i) { curr = i; show(); document.getElementById('lightbox').style.display = 'flex'; }
+    function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; document.getElementById('media-container').innerHTML = ''; }
+    function changeMedia(d) { curr = (curr + d + media.length) % media.length; show(); }
+    
+    function show() {
+        const m = media[curr];
+        const cont = document.getElementById('media-container');
+        cont.innerHTML = m.type === 'video' 
+            ? `<video src="${m.src}" class="lightbox-content" controls autoplay></video>`
+            : `<img src="${m.src}" class="lightbox-content">`;
+        cont.innerHTML += `<div class="lb-watermark">BEROUNKA 2023</div>`;
+    }
+</script>
+</body>
+</html>
