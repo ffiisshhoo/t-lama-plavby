@@ -9,9 +9,8 @@
         html { scroll-behavior:smooth; }
         body { font-family:'Segoe UI', sans-serif; background:#f5f7fa; color:#333; line-height:1.7; }
         
-        /* TLAČÍTKO ZPĚT */
         .sticky-back { position:fixed; top:20px; left:20px; z-index:9999; background:#0b4f7d; color:white; padding:12px 25px; border-radius:10px; text-decoration:none; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s; }
-        .sticky-back:hover { background:#1f7fc5; transform:scale(1.05); }
+        .sticky-back:hover { background:#1f7fc5; transform:scale(1.1); }
 
         .hero { background:linear-gradient(135deg,#0b4f7d,#1f7fc5,#42b0ff); color:white; text-align:center; padding:120px 20px; border-bottom:8px solid #ffd166; }
         .hero h1 { font-size:4rem; margin:20px 0; text-shadow:3px 3px 8px rgba(0,0,0,0.4); }
@@ -24,20 +23,18 @@
         th { background:#0b4f7d; color:white; padding:15px; }
         td { padding:15px; border-bottom:1px solid #ddd; }
         
-        /* INTERAKTIVNÍ GALERIE */
         .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
         .gallery img { width:100%; height:230px; object-fit:cover; border-radius:15px; cursor:pointer; transition:0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .gallery img:hover { transform:scale(1.05) rotate(1deg); box-shadow:0 15px 30px rgba(0,0,0,0.2); }
         
-        /* LIGHTBOX */
         .lightbox { display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; }
         .lightbox-content { position:relative; display:inline-block; }
-        .lightbox img { max-width:85vw; max-height:85vh; border:5px solid white; border-radius:10px; }
-        .close-btn { position:absolute; top:-40px; right:0; color:white; font-size:40px; cursor:pointer; }
+        .lightbox img { max-width:85vw; max-height:85vh; border:5px solid white; border-radius:10px; display:block; }
+        .close-btn { position:absolute; top:-40px; right:0; color:white; font-size:40px; cursor:pointer; font-weight:bold; }
         .nav-btn { position:absolute; top:50%; color:white; font-size:50px; cursor:pointer; padding:20px; user-select:none; }
         .prev { left:-60px; }
         .next { right:-60px; }
-        .watermark { position:absolute; bottom:15px; right:15px; color:rgba(255,255,255,0.6); font-size:1.2rem; pointer-events:none; }
+        .watermark { position:absolute; bottom:15px; right:15px; color:white; font-size:1.2rem; pointer-events:none; text-shadow: 1px 1px 2px black; opacity:0.7; }
     </style>
 </head>
 <body>
