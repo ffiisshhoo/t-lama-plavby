@@ -13,9 +13,18 @@
     .nav-bar { position: sticky; top: 0; z-index: 900; background: #fff; padding: 15px 30px; display: flex; align-items: center; border-bottom: 2px solid #1b7fbd; }
     .btn { background: #1b7fbd; color: white; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; margin-right: 20px; }
     header { background: linear-gradient(135deg,#0b4f6c,#1b7fbd); color: white; text-align: center; padding: 60px 20px; }
+    header h1 { margin: 0; font-size: 3.5rem; }
+    header p { font-size: 1.4rem; margin-top: 15px; }
     
     .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
     .card { background: white; border-radius: 20px; padding: 35px; margin-bottom: 35px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+    h2 { color: #0b4f6c; margin-top: 0; }
+    a { color: #1b7fbd; }
+    blockquote { background:#eef8ff; border-left:5px solid #1b7fbd; margin:30px 0; padding:20px; border-radius:10px; font-style:italic; }
+    .mapa { width: 100%; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+    .posadky { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .posadka { background: #f7f7f7; padding: 25px; border-radius: 15px; }
+    .posadka h3 { color: #1b7fbd; margin-top: 0; }
     
     /* Galerie */
     .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
@@ -28,10 +37,8 @@
     .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
     .lightbox img, .lightbox video { max-width: 100%; max-height: 85vh; border-radius: 15px; border: 4px solid white; }
     
-    /* Vodoznak */
+    /* Vodoznak a Šipky */
     .watermark { position: absolute; bottom: 15px; right: 15px; color: rgba(255,255,255,0.6); font-weight: bold; font-size: 1.2rem; pointer-events: none; }
-    
-    /* Šipky */
     .nav-btn { position: absolute; top: 50%; color: white; font-size: 3rem; cursor: pointer; padding: 20px; user-select: none; }
     .prev { left: -60px; }
     .next { right: -60px; }
@@ -51,6 +58,35 @@
 </header>
 
 <div class="container">
+    <div class="card">
+        <h2>12.–14. července 2024</h2>
+        <p>Letos jsme se rozhodli vyzkoušet další krásnou řeku a to Ohři. Po společné dohodě jsme si udělali pouze víkendovou akci od pátku 12. července do neděle 14. července 2024.</p>
+        <p>Kemp jsme pečlivě vybírali a nakonec jsme skončili v <a href="https://naspici.net/" target="_blank">Kempu Na Špici</a>.</p>
+        <p>V pátek po práci jsme vyrazili směr Karlovarský kraj a naše tábořiště. Přesně při příjezdu do kempu jsme ani nestihli vystoupit z auta a přišla pořádná bouřka. Tak jsme si dali skoro půl hodinky pauzu v autech. Naštěstí se poté znovu ukázalo sluníčko a my mohli začít stavět stany.</p>
+        <p>Poté jsme se vydali do místní restaurace na večeři. Mnozí z nás byli nadšeni, protože v menu nalezli retro klasiku – <strong>kuřecí plátek s broskví a sýrem.</strong> Po večeři jsme ještě chviličku poseděli a šli na kutě.</p>
+        <p>Ráno nás čekal přesun dvěma auty do Karlových Varů, odkud jsme vypluli zpátky do našeho kempu. Všech pět našich plastových AGARů krásně kopírovalo tok řeky a hlavně – Ohře je opravdu nádherná řeka. Jezy, peřeje, úsek Hubertus… prostě pecka.</p>
+        <p>Cestou se dokonce jedna posádka pěkně vykoupala a někomu se utopilo naše epesní modré tričko.</p>
+        <blockquote>Háček musí hlásit… a když nevidí kameny, je to špatné!</blockquote>
+        <p>V pozdním odpoledni jsme dopluli zpět do kempu, kde jsme vyzkoušeli další nabídku jídel z místní restaurace, něco popili a domluvili se, že v neděli před cestou domů zajedeme na hrad Loket.</p>
+        <p>No a neděle? Jako každý rok – pobalit, všechno naskládat do aut a hurá na hrad. Když jsme Loket viděli zezhora, bylo rozhodnuto:</p>
+        <blockquote>Příští rok jedeme zase na Ohři!</blockquote>
+    </div>
+
+    <div class="card">
+        <h2>Mapa výpravy</h2>
+        <img src="fotky/2024/mapa2024.png" alt="Mapa Ohře 2024" class="mapa">
+        <p><strong>Sobota:</strong> Karlovy Vary → Kemp Na Špici 🚣‍♂️<br><strong>Neděle:</strong> Kemp Na Špici → Hrad Loket 🚗</p>
+    </div>
+
+    <div class="card">
+        <h2>Naše posádky</h2>
+        <div class="posadky">
+            <div class="posadka"><h3>Háčkové</h3>Adélka<br>Evelínka<br>Laura<br>Anabelka<br>Týnka</div>
+            <div class="posadka"><h3>Kapitáni</h3>Peťa<br>Tomík<br>Janina<br>Ondra<br>Moni</div>
+            <div class="posadka"><h3>Speciální člen výpravy</h3>A za to všechno se vezla Brigy 😊</div>
+        </div>
+    </div>
+
     <div class="card">
         <h2>Fotogalerie</h2>
         <div class="gallery" id="galerie2024"></div>
