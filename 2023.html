@@ -7,15 +7,33 @@
     <style>
         :root { --header-bg: #2f6b3f; --card-shadow: 0 8px 25px rgba(0,0,0,0.15); }
         body { margin:0; font-family:'Segoe UI', sans-serif; background: linear-gradient(135deg, #e0f7fa, #f1f8e9); color: #333; }
+        
+        /* Nový horní panel */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 2000;
+            font-weight: bold;
+        }
+        .nav-back { text-decoration: none; color: var(--header-bg); background: #e0f7fa; padding: 8px 16px; border-radius: 20px; }
+
         header { background: linear-gradient(135deg, var(--header-bg), #1b4d29); color: white; padding: 60px 20px; text-align: center; }
         .container { max-width:1000px; margin:auto; padding:20px; }
-        .back-button { display:inline-block; background: var(--header-bg); color:white; text-decoration:none; padding:12px 25px; border-radius:30px; margin:20px 0; font-weight:bold; }
+        
         .box { background: white; padding: 30px; border-radius: 25px; box-shadow: var(--card-shadow); margin-bottom: 30px; line-height: 1.8; }
         .map-wrapper { text-align: center; margin-bottom: 40px; }
         .map-wrapper img { max-width: 100%; border-radius: 20px; box-shadow: var(--card-shadow); border: 5px solid white; }
+        
         .galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 40px; }
         .img-wrapper { position: relative; cursor: pointer; border-radius: 12px; overflow: hidden; height: 150px; }
         .img-wrapper img, .img-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        
         .lightbox { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; }
         .close { position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer; }
         .nav-btn { position:absolute; top:50%; color:white; font-size:50px; cursor:pointer; padding:20px; user-select:none; }
@@ -26,65 +44,14 @@
 </head>
 <body>
 
+<nav class="top-nav">
+    <a href="index.html" class="nav-back">← Zpět</a>
+    <span>Berounka 2023</span>
+</nav>
+
 <header><h1>🚣 BEROUNKA 2023</h1></header>
 
 <div class="container">
-    <a href="index.html" class="back-button">⬅ ZPĚT NA PŘEHLED</a>
-
     <div class="box">
         <h2>🌊 Berounka 2023 – první plastové kánoe a velké plány</h2>
-        <p>Rok 2023 přinesl několik změn a naše parta se trochu zmenšila. O to větší jsme ale měli chuť znovu vyrazit na vodu. Tentokrát už opravdu i s dětmi. Gumové rafty jsme vyměnili za 5 plastových kánoí a poprvé jsme se rozdělili – každý dospělý (a někde i dva dospělí) dostal do své kánoe jednoho malého námořníka, který se občas proměnil v kapitána a určoval směr plavby. Volba byla jasná – Berounka, kterou máme doslova za kopečkem a která je pro rodinnou vodáckou výpravu jako stvořená.</p>
-        <p>Ve dnech 20.–23. července 2023 jsme tedy opět vyrazili na naši tradiční vodáckou výpravu. A protože jsme při první Berounce měli skvělé zázemí v <a href="https://www.kempkobylka.cz/" target="_blank">Kempu Kobylka</a>, nebyl důvod nic měnit.</p>
-        <h3>🚣 Den první – Dolanský most a velké plány</h3>
-        <p>V pátek ráno jsme se nechali odvést k Dolanskému mostu, kde jsme plní sil, odhodlání a nadšení usedli do zapůjčených 5 plastových kánoí. Plán byl jasný – doplout až do Kobylky. Jenže, jak se později ukázalo, naše odhodlání bylo o něco větší než naše fyzička.</p>
-        <h3>🛟 Záchrana u Žíkovského mlýna</h3>
-        <p>Naštěstí nás u jezu Žíkovský mlýn potkalo doslova vysvobození. Narazili jsme na majitele půjčovny <a href="https://www.h2osport.cz/" target="_blank">H2O SPORT Sikyta</a>, který nás i s kánoemi naložil a odvezl zpět do Kobylky.</p>
-        <h3>🚣 Druhý pokus</h3>
-        <p>V sobotu jsme znovu vypluli, tentokrát směrem ke <a href="https://www.kempupotucku.cz/" target="_blank">Kempu U Potůčku</a>. A tentokrát jsme byli připraveni i po technické stránce – nové GoPro už bylo k dispozici.</p>
-        <p><strong>Možná nás bylo o pár méně, možná jsme nedopluli tak daleko, jak jsme původně plánovali, ale o zážitky, smích a společné chvíle rozhodně nouze nebyla. A o tom naše plavby vždycky byly, jsou a snad ještě dlouho budou. ❤️🚣‍♂️🌊</strong></p>
-    </div>
-
-    <div class="map-wrapper">
-        <img src="fotky/2023/mapa.png.png" alt="Mapa plavby Berounka 2023">
-    </div>
-
-    <div class="galerie" id="galerie"></div>
-</div>
-
-<div id="lightbox" class="lightbox">
-    <span class="close" onclick="closeLightbox()">✕</span>
-    <div class="nav-btn prev" onclick="changeMedia(-1)">❮</div>
-    <div id="media-container" style="position:relative;"></div>
-    <div class="nav-btn next" onclick="changeMedia(1)">❯</div>
-</div>
-
-<script>
-    const media = [];
-    for(let i=1; i<=19; i++) media.push({type: 'image', src: `fotky/2023/${i}.jpeg`});
-    media.push({type: 'video', src: `fotky/2023/20.mp4`});
-
-    const gal = document.getElementById('galerie');
-    media.forEach((m, i) => {
-        const d = document.createElement('div');
-        d.className = 'img-wrapper';
-        d.innerHTML = m.type === 'video' ? `<video src="${m.src}"></video>` : `<img src="${m.src}">`;
-        d.onclick = () => openLightbox(i);
-        gal.appendChild(d);
-    });
-
-    let curr = 0;
-    function openLightbox(i) { curr = i; show(); document.getElementById('lightbox').style.display = 'flex'; }
-    function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; document.getElementById('media-container').innerHTML = ''; }
-    function changeMedia(d) { curr = (curr + d + media.length) % media.length; show(); }
-    
-    function show() {
-        const m = media[curr];
-        const cont = document.getElementById('media-container');
-        cont.innerHTML = m.type === 'video' 
-            ? `<video src="${m.src}" class="lightbox-content" controls autoplay></video>`
-            : `<img src="${m.src}" class="lightbox-content">`;
-        cont.innerHTML += `<div class="lb-watermark">BEROUNKA 2023</div>`;
-    }
-</script>
-</body>
-</html>
+        <p>Rok 2023 přinesl několik
